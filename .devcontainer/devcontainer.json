@@ -1,7 +1,10 @@
 {
-  "name": "leetcode-notebook",
+  "name": "jupyter-template",
   "image": "mcr.microsoft.com/devcontainers/base:jammy",
   "features": {
+    "ghcr.io/devcontainers/features/node:1": {
+      "nodeGypDependencies": false
+    },
     "ghcr.io/devcontainers/features/python:1": {
       "installTools": false,
       "installJupyterlab": true,
