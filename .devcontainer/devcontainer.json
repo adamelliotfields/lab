@@ -2,7 +2,11 @@
   "name": "leetcode-notebook",
   "image": "mcr.microsoft.com/devcontainers/base:jammy",
   "features": {
-    "ghcr.io/devcontainers/features/python:1": {}
+    "ghcr.io/devcontainers/features/python:1": {
+      "installTools": false,
+      "installJupyterlab": true,
+      "configureJupyterlabAllowOrigin": "*"
+    }
   },
   "forwardPorts": [8888]
 }
