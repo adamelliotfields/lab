@@ -1,0 +1,11 @@
+{
+  "recommendations": [
+    "mechatroner.rainbow-csv",
+    "ms-python.python",
+    "ms-toolsai.jupyter",
+    "ms-toolsai.vscode-jupyter-powertoys"
+  ],
+  "unwantedRecommendations": [
+    "ms-vscode.makefile-tools"
+  ]
+}
