@@ -1,9 +1,9 @@
 {
   "name": "jupyter-codespace",
   "image": "mcr.microsoft.com/devcontainers/base:jammy",
-  "forwardPorts": [8888],
-  "waitFor": "onCreateCommand",
+  "waitFor": "updateContentCommand",
   "updateContentCommand": "make",
+  "forwardPorts": [8888],
   "features": {
     "ghcr.io/devcontainers/features/node:1": {
       "nodeGypDependencies": false

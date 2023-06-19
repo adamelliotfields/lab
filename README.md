@@ -4,6 +4,8 @@ Running JupyterLab in a Codespace. Inspired by [github/codespaces-jupyter](https
 
 ## Usage
 
+See [`Makefile`](./Makefile).
+
 ```bash
 # this goes in your dotfiles (probably already there)
 export PATH="${HOME}/.local/bin:${PATH}"
