@@ -1,7 +1,5 @@
-python_path := $(shell command -v python 2>/dev/null)
 pipenv_path := $(shell command -v pipenv 2>/dev/null)
 npm_path := $(shell command -v npm 2>/dev/null)
-npx_path := $(shell command -v npx 2>/dev/null)
 
 # Setting the token to an empty string disables authentication and thus makes the redirect file unnecessary.
 # When running in a Codespace, it will still be behind GitHub authentication unless you explicitly make it public.
@@ -30,11 +28,7 @@ else
 endif
 
 tslab:
-ifdef npx_path
-	@npx tslab install --python="${python_path}" --binary="${PWD}/node_modules/.bin/tslab"
-else
-	$(error npx is not installed)
-endif
+	@pipenv run python "${PWD}/node_modules/tslab/python/install.py" --tslab="${PWD}/node_modules/.bin/tslab"
 
 jupyter:
 ifeq ($(CODESPACES), true)
