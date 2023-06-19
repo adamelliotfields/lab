@@ -1,18 +1,9 @@
 {
   "name": "jupyter-codespace",
-  "image": "mcr.microsoft.com/devcontainers/base:jammy",
+  "image": "mcr.microsoft.com/devcontainers/universal:2-focal",
   "waitFor": "updateContentCommand",
   "updateContentCommand": "make",
-  "forwardPorts": [8888],
-  "features": {
-    "ghcr.io/devcontainers/features/node:1": {
-      "nodeGypDependencies": false
-    },
-    "ghcr.io/devcontainers/features/python:1": {
-      "installTools": false,
-      "installJupyterlab": false
-    }
-  },
+  "forwardPorts": [2222, 8888],
   "customizations": {
     "vscode": {
       "extensions": [
