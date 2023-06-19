@@ -8,7 +8,7 @@ Running JupyterLab in a Codespace. Inspired by [github/codespaces-jupyter](https
 # this goes in your dotfiles (probably already there)
 export PATH="${HOME}/.local/bin:${PATH}"
 
-# this installs dependencies (required)
+# this installs dependencies (run on devcontainer creation)
 make
 
 # this runs the server (optional)

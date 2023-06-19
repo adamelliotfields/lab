@@ -1,7 +1,9 @@
 {
-  "name": "jupyter-template",
+  "name": "jupyter-codespace",
   "image": "mcr.microsoft.com/devcontainers/base:jammy",
   "forwardPorts": [8888],
+  "waitFor": "onCreateCommand",
+  "updateContentCommand": "make",
   "features": {
     "ghcr.io/devcontainers/features/node:1": {
       "nodeGypDependencies": false
