@@ -17,6 +17,10 @@ make
 make jupyter
 ```
 
+## Notebooks
+
+Make sure you commit your `*.ipynb` [notebook](./notebooks) files, as GitHub automatically renders them (the generated images are [Data URLs](https://developer.mozilla.org/en-US/docs/Web/HTTP/Basics_of_HTTP/Data_URLs)).
+
 ## Language Servers
 
 You can install additional [language servers](https://jupyterlab-lsp.readthedocs.io/en/latest/Language%20Servers.html) via npm. I've included the [Bash language server](https://github.com/bash-lsp/bash-language-server).
