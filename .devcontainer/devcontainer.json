@@ -3,7 +3,7 @@
   "image": "mcr.microsoft.com/devcontainers/universal:2-focal",
   "waitFor": "updateContentCommand",
   "updateContentCommand": "make",
-  "forwardPorts": [2222, 8888],
+  "forwardPorts": [8888],
   "customizations": {
     "vscode": {
       "extensions": [

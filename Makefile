@@ -7,9 +7,10 @@ npm_path := $(shell command -v npm 2>/dev/null)
 jupyter_opts := --IdentityProvider.token='' --ServerApp.use_redirect_file=False --ServerApp.root_dir="${PWD}/notebooks"
 jupyter_opts_codespace := --ServerApp.allow_origin='*' --ServerApp.custom_display_url="https://${CODESPACE_NAME}-8888.${GITHUB_CODESPACES_PORT_FORWARDING_DOMAIN}" --ip=0.0.0.0 --no-browser
 
-.PHONY: all pip npm tslab jupyter
+.PHONY: tslab pip npm jupyter
 
-all: pip npm tslab
+tslab: pip npm
+	@pipenv run python "${PWD}/node_modules/tslab/python/install.py" --tslab="${PWD}/node_modules/.bin/tslab"
 
 # requires ~/.local/bin to be in your $PATH
 pip:
@@ -27,12 +28,11 @@ else
 	$(error npm is not installed)
 endif
 
-tslab:
-	@pipenv run python "${PWD}/node_modules/tslab/python/install.py" --tslab="${PWD}/node_modules/.bin/tslab"
-
+# jupysql sends telemetry to posthog, which is blocked by adguard, and the errors will spam your notebook
+# https://docs.ploomber.io/en/latest/community/user-stats.html
 jupyter:
 ifeq ($(CODESPACES), true)
-	@pipenv run jupyter lab $(jupyter_opts) $(jupyter_opts_codespace)
+	@PLOOMBER_STATS_ENABLED=false pipenv run jupyter lab $(jupyter_opts) $(jupyter_opts_codespace)
 else
 	@pipenv run jupyter lab $(jupyter_opts)
 endif
