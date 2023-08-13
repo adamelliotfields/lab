@@ -34,5 +34,5 @@ jupyter:
 ifeq ($(CODESPACES), true)
 	@PLOOMBER_STATS_ENABLED=false pipenv run jupyter lab $(jupyter_opts) $(jupyter_opts_codespace)
 else
-	@pipenv run jupyter lab $(jupyter_opts)
+	@PLOOMBER_STATS_ENABLED=false pipenv run jupyter lab $(jupyter_opts)
 endif
