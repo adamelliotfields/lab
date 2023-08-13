@@ -12,10 +12,10 @@ See [`Makefile`](./Makefile).
 # this goes in your dotfiles (probably already there)
 export PATH="${HOME}/.local/bin:${PATH}"
 
-# this installs dependencies (run on devcontainer creation)
+# this installs dependencies
 make
 
-# this runs the server (optional)
+# this runs the server
 make jupyter
 ```
 
