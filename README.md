@@ -1,5 +1,7 @@
 # jupyter-codespace
 
+[![Open in GitHub Codespaces](https://github.com/codespaces/badge.svg)](https://github.com/codespaces/new/adamelliotfields/jupyter-codespace?machine=basicLinux32gb&devcontainer_path=.devcontainer/devcontainer.json)
+
 Running JupyterLab in a Codespace. Inspired by [github/codespaces-jupyter](https://github.com/github/codespaces-jupyter).
 
 ## Usage
