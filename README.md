@@ -2,7 +2,7 @@
 
 [![Open in GitHub Codespaces](https://github.com/codespaces/badge.svg)](https://github.com/codespaces/new/adamelliotfields/jupyter-codespace?machine=basicLinux32gb&devcontainer_path=.devcontainer/devcontainer.json)
 
-Running JupyterLab in a Codespace. Inspired by [github/codespaces-jupyter](https://github.com/github/codespaces-jupyter).
+Running JupyterLab in a Codespace. Inspired by [github/codespaces-jupyter](https://github.com/github/codespaces-jupyter) and [DataCamp Workspaces](https://www.datacamp.com/workspace).
 
 ## Usage
 
@@ -38,3 +38,30 @@ Each kernel has its own installation instructions. I've included the [tslab](htt
 With JupySQL you can connect to an in-memory SQLite database using `%sql sqlite://` or an in-memory DuckDB database using `%sql duckdb://`. [Read the docs](https://jupysql.ploomber.io) for more.
 
 To actually run a database container inside your Codespace, you'll want to use [Docker-in-Docker](https://github.com/devcontainers/features/tree/main/src/docker-in-docker).
+
+## Browser
+
+Codespaces have an embedded [Simple Browser](https://github.blog/changelog/2022-10-20-introducing-the-codespaces-simple-browser)[^1] that can be opened automatically when launching an application. **I'm not able to get it working at the moment.**
+
+> I just wanted to see if this was possible; you _probably_ want to use a full browser tab.
+
+You can open the Simple Browser manually by right-clicking a port and selecting "Preview in editor". To have it open automatically, add this to [`devcontainer.json`](./.devcontainer/devcontainer.json):
+
+```json
+"portsAttributes": {
+  "8888": {
+    "label": "Jupyter",
+    "onAutoForward": "openPreview"
+  }
+}
+```
+
+Add this to the `jupyter_opts_codespace` variable in the [`Makefile`](./Makefile)[^2]:
+
+```sh
+--ServerApp.tornado_settings="{'headers': {'Content-Security-Policy': \"frame-ancestors https://${CODESPACE_NAME}-8888.${GITHUB_CODESPACES_PORT_FORWARDING_DOMAIN} 'self' \"}}"
+```
+
+[^1]: https://docs.github.com/en/codespaces/troubleshooting/troubleshooting-github-codespaces-clients#troubleshooting-the-simple-browser
+
+[^2]: https://jupyter-server.readthedocs.io/en/latest/operators/public-server.html#embedding-the-notebook-in-another-website
