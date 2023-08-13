@@ -1,8 +1,8 @@
 {
   "name": "jupyter-codespace",
   "image": "mcr.microsoft.com/devcontainers/universal:2-focal",
-  "waitFor": "updateContentCommand",
-  "updateContentCommand": "make",
+  // "waitFor": "updateContentCommand",
+  // "updateContentCommand": "make",
   "forwardPorts": [8888],
   "customizations": {
     "vscode": {
