@@ -1,3 +1,7 @@
 {
-  "jupyter.notebookFileRoot": "${workspaceFolder}/notebooks"
+  "jupyter.notebookFileRoot": "${workspaceFolder}/notebooks",
+  "[makefile]": {
+    "editor.detectIndentation": false,
+    "editor.insertSpaces": false
+  }
 }
