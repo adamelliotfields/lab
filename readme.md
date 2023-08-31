@@ -25,7 +25,7 @@ make jupyter
 
 I've installed the [`openai`](https://pypi.org/project/openai) and [`jupyter-ai`](https://pypi.org/project/jupyter-ai) packages, so you only need to export `OPENAI_API_KEY` in whatever shell you're using. You'll need to create a [Codespace secret](https://docs.github.com/en/codespaces/managing-your-codespaces/managing-encrypted-secrets-for-your-codespaces) as well.
 
-The environment variable is used for the `%ai` magic and is separate from the Jupyternaut AI assistant. For the latter, you simply paste the key into the input field the first time you use Jupyternaut.
+The environment variable is used for the [%ai magic](./notebooks/ai.ipynb) and is separate from the Jupyternaut AI assistant. For the latter, you simply paste the key into the input field the first time you use Jupyternaut.
 
 ### Notebooks
 
