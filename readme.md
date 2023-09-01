@@ -27,6 +27,17 @@ I've installed the [`openai`](https://pypi.org/project/openai) and [`jupyter-ai`
 
 The environment variable is used for the [%ai magic](./notebooks/ai.ipynb) and is separate from the Jupyternaut AI assistant. For the latter, you simply paste the key into the input field the first time you use Jupyternaut.
 
+### VS Code
+
+> [!IMPORTANT]
+> The empty quotes are required.
+
+If you want to connect the VS Code [Jupyter extension](https://marketplace.visualstudio.com/items?itemName=ms-toolsai.jupyter) to the running Jupyter server, you have to add the token query parameter to the URL.
+
+```
+http://localhost:8888?token=''
+```
+
 ### Notebooks
 
 Make sure you commit your `*.ipynb` [notebook](./notebooks) files, as GitHub automatically renders them (the generated images are [Data URLs](https://developer.mozilla.org/en-US/docs/Web/HTTP/Basics_of_HTTP/Data_URLs)).
@@ -40,6 +51,13 @@ Note that they are mostly for the file editor, not notebooks. For notebooks, you
 ### Kernels
 
 Each kernel has its own installation instructions. I've included the [tslab](https://github.com/yunabe/tslab) kernel for TypeScript and [JupySQL](https://github.com/ploomber/jupysql) for SQL. Also check out the [evcxr](https://github.com/evcxr/evcxr) kernel for Rust.
+
+Use the `kernelspec` command to manage kernels:
+
+```sh
+jupyter kernelspec list
+jupyter kernelspec remove tslab
+```
 
 ### Databases
 

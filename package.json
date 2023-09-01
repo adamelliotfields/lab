@@ -3,12 +3,10 @@
   "name": "jupyter-codespace",
   "version": "0.0.0",
   "devDependencies": {
-    "@types/lodash": "^4",
     "bash-language-server": "^5",
     "tslab": "^1"
   },
   "dependencies": {
-    "lodash": "^4",
     "undici": "^5"
   }
 }
