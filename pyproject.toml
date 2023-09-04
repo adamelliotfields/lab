@@ -1,0 +1,23 @@
+[tool.poetry]
+name = "jupyter-codespace"
+version = "0.0.0"
+description = ""
+authors = [""]
+readme = "readme.md"
+
+[tool.poetry.dependencies]
+python = "^3.10"
+bokeh = "*"
+duckdb = "*"
+jupysql = "*"
+jupyter-ai = "*"
+jupyterlab = "*"
+jupyterlab-git = "*"
+matplotlib = "*"
+numpy = "*"
+openai = "*"
+pandas = "*"
+
+[build-system]
+requires = ["poetry-core"]
+build-backend = "poetry.core.masonry.api"

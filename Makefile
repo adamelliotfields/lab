@@ -1,4 +1,4 @@
-pipenv_path := $(shell command -v pipenv 2>/dev/null)
+poetry_path := $(shell command -v poetry 2>/dev/null)
 npm_path := $(shell command -v npm 2>/dev/null)
 
 # Setting the token to an empty string disables authentication and thus makes the redirect file unnecessary.
@@ -7,18 +7,18 @@ npm_path := $(shell command -v npm 2>/dev/null)
 jupyter_opts := --IdentityProvider.token='' --ServerApp.password='' --ServerApp.disable_check_xsrf=True --ServerApp.use_redirect_file=False --ServerApp.root_dir="${PWD}/notebooks"
 jupyter_opts_codespace := --ServerApp.allow_origin='*' --ServerApp.custom_display_url="https://${CODESPACE_NAME}-8888.${GITHUB_CODESPACES_PORT_FORWARDING_DOMAIN}" --ip=0.0.0.0 --no-browser
 
-.PHONY: tslab pip npm jupyter
+.PHONY: tslab poetry npm jupyter
 
-tslab: pip npm
-	@pipenv run python "${PWD}/node_modules/tslab/python/install.py" --tslab="${PWD}/node_modules/.bin/tslab"
+tslab: poetry npm
+	@poetry run python "${PWD}/node_modules/tslab/python/install.py" --tslab="${PWD}/node_modules/.bin/tslab"
 
 # requires ~/.local/bin to be in your $PATH
-pip:
-ifdef pipenv_path
-	@pipenv install
+poetry:
+ifdef poetry_path
+	@poetry install
 else
-	@python -m pip install --user pipenv
-	@pipenv install
+	@python -m pip install --user poetry
+	@poetry install
 endif
 
 npm:
@@ -32,7 +32,7 @@ endif
 # https://docs.ploomber.io/en/latest/community/user-stats.html
 jupyter:
 ifeq ($(CODESPACES), true)
-	@PLOOMBER_STATS_ENABLED=false pipenv run jupyter lab $(jupyter_opts) $(jupyter_opts_codespace)
+	@PLOOMBER_STATS_ENABLED=false poetry run jupyter lab $(jupyter_opts) $(jupyter_opts_codespace)
 else
-	@PLOOMBER_STATS_ENABLED=false pipenv run jupyter lab $(jupyter_opts)
+	@PLOOMBER_STATS_ENABLED=false poetry run jupyter lab $(jupyter_opts)
 endif
