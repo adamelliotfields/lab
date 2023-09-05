@@ -7,9 +7,12 @@
   "customizations": {
     "vscode": {
       "extensions": [
+        "mechatroner.rainbow-csv",
+        "ms-python.black-formatter",
         "ms-python.python",
         "ms-toolsai.jupyter",
-        "ms-toolsai.vscode-jupyter-powertoys"
+        "ms-toolsai.vscode-jupyter-powertoys",
+        "tamasfe.even-better-toml"
       ]
     }
   }

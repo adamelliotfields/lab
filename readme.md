@@ -38,6 +38,14 @@ If you want to connect the VS Code [Jupyter extension](https://marketplace.visua
 http://localhost:8888?token=''
 ```
 
+### Linting
+
+[Black](https://github.com/psf/black) is installed and I've set `notebook.formatOnSave.enabled` in [`settings.json`](./.vscode/settings.json).
+
+For linting, the [Pylance](https://marketplace.visualstudio.com/items?itemName=ms-python.vscode-pylance) extension (which is included with the [Python](https://marketplace.visualstudio.com/items?itemName=ms-python.python) extension) works out-of-the-box. You can enable type-checking by setting `python.analysis.typeCheckingMode` to **basic** or **strict**.
+
+I'd like to add [Ruff](https://github.com/astral-sh/ruff) when it works in notebooks in VS Code (it can lint them from the CLI).
+
 ### Notebooks
 
 Make sure you commit your `*.ipynb` [notebook](./notebooks) files, as GitHub automatically renders them (the generated images are [Data URLs](https://developer.mozilla.org/en-US/docs/Web/HTTP/Basics_of_HTTP/Data_URLs)).

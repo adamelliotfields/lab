@@ -1,7 +1,13 @@
 {
+  "editor.rulers": [99],
   "jupyter.notebookFileRoot": "${workspaceFolder}/notebooks",
+  "notebook.formatOnSave.enabled": true,
   "[makefile]": {
     "editor.detectIndentation": false,
     "editor.insertSpaces": false
+  },
+  "[python]": {
+    "editor.defaultFormatter": "ms-python.black-formatter",
+    "editor.formatOnSave": true
   }
 }
