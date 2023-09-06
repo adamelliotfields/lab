@@ -42,11 +42,11 @@ I've installed the [`openai`](https://pypi.org/project/openai) and [`jupyter-ai`
 
 ### VS Code
 
-When opening a notebook for the first time you'll need to select the Python interpreter to use.
+When opening a notebook for the first time you'll need to [pick the Jupyter kernel](https://code.visualstudio.com/docs/datascience/jupyter-kernel-management) to use.
 
-The `make` command will create a `jupyter-codespace` kernel for you to connect to locally. If you do not get IntelliSense, then you have to <kbd>⌘</kbd>+<kbd>⇧</kbd>+<kbd>P</kbd> `Reload Window`. You can also try `Python: Clear Cache and Reload Window` which additionally refreshes the available Python interpreters.
+The `make` command will create a virtualenv for you via `poetry env use`.
 
-If you want to connect the VS Code [Jupyter extension](https://marketplace.visualstudio.com/items?itemName=ms-toolsai.jupyter) to the running Jupyter server, you have to add the `token` query parameter to the URL.
+If you want to connect to the running Jupyter server, you have to add the `token` query parameter to the URL.
 
 > [!IMPORTANT]
 > The empty quotes are required.
@@ -54,6 +54,8 @@ If you want to connect the VS Code [Jupyter extension](https://marketplace.visua
 ```
 http://localhost:8888?token=''
 ```
+
+If you do not get IntelliSense, then you have to <kbd>⌘</kbd>+<kbd>⇧</kbd>+<kbd>P</kbd> `Reload Window`. You can also try `Python: Clear Cache and Reload Window` which additionally refreshes the available Python interpreters.
 
 ### Linting
 

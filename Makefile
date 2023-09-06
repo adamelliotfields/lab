@@ -7,17 +7,19 @@ npm_path := $(shell command -v npm 2>/dev/null)
 jupyter_opts := --IdentityProvider.token='' --ServerApp.password='' --ServerApp.disable_check_xsrf=True --ServerApp.use_redirect_file=False --ServerApp.root_dir="${PWD}/notebooks"
 jupyter_opts_codespace := --ServerApp.allow_origin='*' --ServerApp.custom_display_url="https://${CODESPACE_NAME}-8888.${GITHUB_CODESPACES_PORT_FORWARDING_DOMAIN}" --ip=0.0.0.0 --no-browser
 
-.PHONY: tslab poetry npm kernel jupyter
+.PHONY: tslab poetry npm jupyter
 
-tslab: poetry npm kernel
+tslab: poetry npm
 	@poetry run python "${PWD}/node_modules/tslab/python/install.py" --tslab="${PWD}/node_modules/.bin/tslab"
 
 # requires ~/.local/bin to be in your $PATH
 poetry:
 ifdef poetry_path
+	@poetry env use $(shell which python)
 	@poetry install
 else
 	@python -m pip install --user poetry
+	@poetry env use $(shell which python)
 	@poetry install
 endif
 
@@ -27,9 +29,6 @@ ifdef npm_path
 else
 	$(error npm is not installed)
 endif
-
-kernel:
-	@poetry run ipython kernel install --user --name=jupyter-codespace
 
 # jupysql sends telemetry to posthog, which is blocked by adguard, and the errors will spam your notebook
 # https://docs.ploomber.io/en/latest/community/user-stats.html
