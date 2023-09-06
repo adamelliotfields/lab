@@ -89,7 +89,7 @@ poetry run jupyter kernelspec list
 To remove all the kernels:
 
 ```sh
-poetry run jupyter kernelspec remove -y jupyter-codespace jslab tslab
+poetry run jupyter kernelspec remove -y jslab tslab
 ```
 
 ### Databases
