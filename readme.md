@@ -44,7 +44,12 @@ I've installed the [`openai`](https://pypi.org/project/openai) and [`jupyter-ai`
 
 When opening a notebook for the first time you'll need to [pick the Jupyter kernel](https://code.visualstudio.com/docs/datascience/jupyter-kernel-management) to use.
 
-The `make` command will create a virtualenv for you via `poetry env use`.
+The `make` command will create a virtualenv for you via `poetry env use`. If it is not available in the kernel picker, you can add it manually:
+  1. Run `poetry env list --full-path`
+  2. Copy the path
+  3. Run <kbd>⌘</kbd>+<kbd>⇧</kbd>+<kbd>P</kbd> `Python: Select Interpreter`
+  4. Click `Enter Interpreter Path`
+  5. Paste the path
 
 If you want to connect to the running Jupyter server, you have to add the `token` query parameter to the URL.
 
