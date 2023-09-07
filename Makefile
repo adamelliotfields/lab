@@ -10,7 +10,7 @@ jupyter_opts_codespace := --ServerApp.allow_origin='*' --ServerApp.custom_displa
 .PHONY: tslab poetry npm jupyter
 
 tslab: poetry npm
-	@poetry run python "${PWD}/node_modules/tslab/python/install.py" --tslab="${PWD}/node_modules/.bin/tslab"
+	@poetry run $(shell which python) "${PWD}/node_modules/tslab/python/install.py" --tslab="${PWD}/node_modules/.bin/tslab"
 
 # requires ~/.local/bin to be in your $PATH
 poetry:
