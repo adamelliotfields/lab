@@ -9,7 +9,7 @@ Running JupyterLab in a Codespace. Inspired by [github/codespaces-jupyter](https
 See [`Makefile`](./Makefile).
 
 ```bash
-# this goes in your dotfiles (~/.bashrc, ~/.zshrc, etc)
+# this goes in your RC files (~/.bashrc, ~/.zshrc, etc)
 export PYDEVD_DISABLE_FILE_VALIDATION=1
 export PATH="${HOME}/.local/bin:${PATH}"
 
@@ -22,7 +22,19 @@ make jupyter
 
 ## Notes
 
-### Cloning This Repository
+### Contents
+* [Cloning This Repository](#cloning-this-repository)
+* [AI](#ai)
+* [VS Code](#vs-code)
+* [Linting](#linting)
+* [Language Servers](#language-servers)
+* [Kernels](#kernels)
+* [Data](#data)
+* [Databases](#databases)
+* [Exporting PDFs](#exporting-pdfs)
+* [Codespace Simple Browser](#codespace-simple-browser)
+
+### Cloning This Repository [:top:](#contents)
 
 The name _jupyter-codespace_ appears in:
   * [`devcontainer.json`](./.devcontainer/devcontainer.json)
@@ -36,11 +48,11 @@ You probably want to change it to the name of your project.
 
 Also, you can change the `universal:2` devcontainer image to `python:3` if you are not using Node. You'll want to remove the `npm` script from the Makefile if you do.
 
-### AI
+### AI [:top:](#contents)
 
 I've installed the [`openai`](https://pypi.org/project/openai) and [`jupyter-ai`](https://pypi.org/project/jupyter-ai) packages, so you only need to export `OPENAI_API_KEY` in whatever shell you're using. You'll need to create a [Codespace secret](https://docs.github.com/en/codespaces/managing-your-codespaces/managing-encrypted-secrets-for-your-codespaces) as well.
 
-### VS Code
+### VS Code [:top:](#contents)
 
 When opening a notebook for the first time you'll need to [pick the Jupyter kernel](https://code.visualstudio.com/docs/datascience/jupyter-kernel-management) to use.
 
@@ -62,7 +74,7 @@ http://localhost:8888?token=''
 
 If you do not get IntelliSense, then you have to <kbd>⌘</kbd>+<kbd>⇧</kbd>+<kbd>P</kbd> `Reload Window`. You can also try `Python: Clear Cache and Reload Window` which additionally refreshes the available Python interpreters.
 
-### Linting
+### Linting [:top:](#contents)
 
 [Black](https://github.com/psf/black) is installed and I've set `notebook.formatOnSave.enabled` in [`settings.json`](./.vscode/settings.json).
 
@@ -70,13 +82,13 @@ For linting, the [Pylance](https://marketplace.visualstudio.com/items?itemName=m
 
 I'd like to add [Ruff](https://github.com/astral-sh/ruff) when it works in notebooks in VS Code (it can lint them from the CLI).
 
-### Language Servers
+### Language Servers [:top:](#contents)
 
 You can install additional [language servers](https://jupyterlab-lsp.readthedocs.io/en/latest/Language%20Servers.html) via npm. I've included the [Bash language server](https://github.com/bash-lsp/bash-language-server).
 
 Note that they are mostly for the file editor, not notebooks. For notebooks, you probably want [kernels](https://github.com/jupyter/jupyter/wiki/Jupyter-kernels).
 
-### Kernels
+### Kernels [:top:](#contents)
 
 Each kernel has its own installation instructions. I've included the [tslab](https://github.com/yunabe/tslab) kernel for TypeScript and [JupySQL](https://github.com/ploomber/jupysql) for SQL. Also check out the [evcxr](https://github.com/evcxr/evcxr) kernel for Rust.
 
@@ -92,13 +104,46 @@ To remove all the kernels:
 poetry run jupyter kernelspec remove -y jslab tslab
 ```
 
-### Databases
+### Data [:top:](#contents)
+
+There are a couple settings that affect how you load data (e.g., `pd.read_csv()`).
+
+In VS Code's [`settings.json`](./.vscode/settings.json), `jupyter.notebookFileRoot` essentially sets the "working directory" for notebooks. This changes the relative path when loading files which ~~can be~~ is confusing. It is **not** the same as Jupyter's `--notebook-dir` and `--ServerApp.root_dir` options. The default is `${fileDirname}` (leave it).
+
+### Databases [:top:](#contents)
 
 With JupySQL you can connect to an in-memory SQLite database using `%sql sqlite://` or an in-memory DuckDB database using `%sql duckdb://`. [Read the docs](https://jupysql.ploomber.io) for more.
 
 To actually run a database container inside your Codespace, you'll want to use [Docker-in-Docker](https://github.com/devcontainers/features/tree/main/src/docker-in-docker).
 
-### Codespace Simple Browser
+### Exporting PDFs [:top:](#contents)
+
+You need to install `pandoc` and `basictex`.
+
+> [!WARNING]
+> Do not install `mactex` as it is a 5GB suite of Tex tools you *might* not need.
+
+```sh
+brew install pandoc
+brew install --cask basictex
+```
+
+You'll have to exit your terminal to get the Tex binaries in your PATH. You don't need to change your RC files and you shouldn't need to logout/restart. Since `basictex` is a minimal distribution, you'll have to install some additional packages:
+
+```sh
+# must be run as root
+sudo tlmgr update --self
+sudo tlmgr install tcolorbox environ pdfcol adjustbox titling enumitem soul rsfs
+```
+
+Now you can convert a notebook to a PDF:
+
+```sh
+# creates notebooks/your_notebook.pdf with default styling
+poetry run jupyter nbconvert notebooks/your_notebook.ipynb --to pdf
+```
+
+### Codespace Simple Browser [:top:](#contents)
 
 Codespaces have an embedded [Simple Browser](https://github.blog/changelog/2022-10-20-introducing-the-codespaces-simple-browser)[^1] that can be opened automatically when launching an application. **I'm not able to get it working at the moment.**
 
