@@ -2,4 +2,10 @@
 .ipynb_checkpoints/
 .DS_Store
 node_modules/
-notebooks/data/db.sqlite
+
+# sakila dataset from kaggle
+sqlite-sakila-db/
+README.txt
+SQLite3\ Sakila\ Sample\ Database\ ERD.png
+sqlite-sakila-sample-database.zip
+sqlite-sakila.db
