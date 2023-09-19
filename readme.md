@@ -25,6 +25,7 @@ make jupyter
 ### Contents
 * [Cloning This Repository](#cloning-this-repository)
 * [AI](#ai)
+* [Kaggle](#kaggle)
 * [VS Code](#vs-code)
 * [Linting](#linting)
 * [Language Servers](#language-servers)
@@ -51,6 +52,10 @@ Also, you can change the `universal:2` devcontainer image to `python:3` if you a
 ### AI [:top:](#contents)
 
 I've installed the [`openai`](https://pypi.org/project/openai) and [`jupyter-ai`](https://pypi.org/project/jupyter-ai) packages, so you only need to export `OPENAI_API_KEY` in whatever shell you're using. You'll need to create a [Codespace secret](https://docs.github.com/en/codespaces/managing-your-codespaces/managing-encrypted-secrets-for-your-codespaces) as well.
+
+### Kaggle [:top:](#contents)
+
+The [Kaggle CLI](https://www.kaggle.com/docs/api) allows you to easily download datasets. You need to export `KAGGLE_USERNAME` and `KAGGLE_KEY`.
 
 ### VS Code [:top:](#contents)
 
