@@ -1,5 +1,5 @@
 {
-  "name": "jupyter-codespace",
+  "name": "jupyter",
   "image": "mcr.microsoft.com/devcontainers/universal:2-focal",
   // "waitFor": "updateContentCommand",
   // "updateContentCommand": "make",

@@ -1,6 +1,6 @@
 {
   "private": true,
-  "name": "jupyter-codespace",
+  "name": "jupyter",
   "version": "0.0.0",
   "devDependencies": {
     "bash-language-server": "^5",
