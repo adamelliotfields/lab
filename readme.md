@@ -1,8 +1,6 @@
-# jupyter-codespace
+# jupyter
 
-[![Open in GitHub Codespaces](https://github.com/codespaces/badge.svg)](https://github.com/codespaces/new/adamelliotfields/jupyter-codespace?machine=basicLinux32gb&devcontainer_path=.devcontainer/devcontainer.json)
-
-Running JupyterLab in a Codespace. Inspired by [github/codespaces-jupyter](https://github.com/github/codespaces-jupyter) and [DataCamp Workspaces](https://www.datacamp.com/workspace).
+[![Open in GitHub Codespaces](https://github.com/codespaces/badge.svg)](https://github.com/codespaces/new/adamelliotfields/jupyter?machine=basicLinux32gb&devcontainer_path=.devcontainer/devcontainer.json)
 
 ## Usage
 
@@ -37,9 +35,8 @@ make jupyter
 
 ### Cloning This Repository [:top:](#contents)
 
-The name _jupyter-codespace_ appears in:
+The name _jupyter_ appears in:
   * [`devcontainer.json`](./.devcontainer/devcontainer.json)
-  * [`Makefile`](./Makefile)
   * [`package-lock.json`](./package-lock.json)
   * [`package.json`](./package.json)
   * [`pyproject.toml`](./pyproject.toml)
