@@ -23,16 +23,16 @@ make jupyter
 
 ### Contents
 * [Cloning This Repository](#cloning-this-repository)
+* [Devcontainers](#devcontainers)
 * [AI](#ai)
 * [Kaggle](#kaggle)
 * [VS Code](#vs-code)
 * [Linting](#linting)
 * [Language Servers](#language-servers)
 * [Kernels](#kernels)
-* [Data](#data)
+* [Working Directory](#working-directory)
 * [Databases](#databases)
 * [Exporting PDFs](#exporting-pdfs)
-* [Codespace Simple Browser](#codespace-simple-browser)
 
 ### Cloning This Repository [:top:](#contents)
 
@@ -45,7 +45,17 @@ The name _jupyter_ appears in:
 
 You probably want to change it to the name of your project.
 
-Also, you can change the `universal:2` devcontainer image to `python:3` if you are not using Node. You'll want to remove the `npm` script from the Makefile if you do.
+### Devcontainers [:top:](#contents)
+
+GitHub has an "Open in JupyterLab" button that will run the JupyterLab server automatically. This works if your devcontainer has `jupyter` installed.
+
+The default devcontainer used by Codespaces is the [`universal`](https://github.com/devcontainers/images/tree/main/src/universal) image, which has a complete machine learning stack (with Jupyter) pre-installed. It also includes Node.
+
+The [`python`](https://github.com/devcontainers/images/tree/main/src/python) image is more for building Python packages or apps. It includes dev tools, but no data science-y stuff (no Jupyter). It comes with NVM, but Node is not pre-installed.
+
+Using a virtual environment or an alternative package manager like Pipenv/Poetry means you need to ensure that JupyterLab is running in the same environment. If you use `ipython` from the terminal, then you need to make sure it's running in the same environment as well. For example: `poetry run jupyter lab` and `poetry run ipython`.
+
+I find that for data projects it's easier to use `requirements.txt`. It's supported by [Binder](https://mybinder.org) and it's also how you define dependencies for apps in 🤗 [Spaces](https://huggingface.co/spaces), so it's good for muscle memory. Finally, using the `universal` devcontainer image means your Codespaces start faster, as everything is installed when the image is built.
 
 ### AI [:top:](#contents)
 
@@ -57,16 +67,7 @@ The [Kaggle CLI](https://www.kaggle.com/docs/api) allows you to easily download 
 
 ### VS Code [:top:](#contents)
 
-When opening a notebook for the first time you'll need to [pick the Jupyter kernel](https://code.visualstudio.com/docs/datascience/jupyter-kernel-management) to use.
-
-The `make` command will create a virtualenv for you via `poetry env use`. If it is not available in the kernel picker, you can add it manually:
-  1. Run `poetry env list --full-path`
-  2. Copy the path
-  3. Run <kbd>⌘</kbd>+<kbd>⇧</kbd>+<kbd>P</kbd> `Python: Select Interpreter`
-  4. Click `Enter Interpreter Path`
-  5. Paste the path
-
-If you want to connect to the running Jupyter server, you have to add the `token` query parameter to the URL.
+When opening a notebook for the first time you'll need to [pick the Jupyter kernel](https://code.visualstudio.com/docs/datascience/jupyter-kernel-management) to use. If you want to connect to the running Jupyter server, you have to add the `token` query parameter to the URL.
 
 > [!IMPORTANT]
 > The empty quotes are required.
@@ -83,7 +84,7 @@ If you do not get IntelliSense, then you have to <kbd>⌘</kbd>+<kbd>⇧</kbd>+<
 
 For linting, the [Pylance](https://marketplace.visualstudio.com/items?itemName=ms-python.vscode-pylance) extension (which is included with the [Python](https://marketplace.visualstudio.com/items?itemName=ms-python.python) extension) works out-of-the-box. You can enable type-checking by setting `python.analysis.typeCheckingMode` to **basic** or **strict**.
 
-I'd like to add [Ruff](https://github.com/astral-sh/ruff) when it works in notebooks in VS Code (it can lint them from the CLI).
+I'd like to add [Ruff](https://github.com/astral-sh/ruff) when it works in notebooks in VS Code (astral-sh/ruff-vscode#256).
 
 ### Language Servers [:top:](#contents)
 
@@ -98,33 +99,31 @@ Each kernel has its own installation instructions. I've included the [tslab](htt
 Use the `kernelspec` command to manage kernels:
 
 ```sh
-poetry run jupyter kernelspec list
+jupyter kernelspec list
 ```
 
 To remove all the kernels:
 
 ```sh
-poetry run jupyter kernelspec remove -y jslab tslab
+jupyter kernelspec remove -y jslab tslab
 ```
 
-### Data [:top:](#contents)
+### Working Directory [:top:](#contents)
 
 There are a couple settings that affect how you load data (e.g., `pd.read_csv()`).
 
-In VS Code's [`settings.json`](./.vscode/settings.json), `jupyter.notebookFileRoot` essentially sets the "working directory" for notebooks. This changes the relative path when loading files which ~~can be~~ is confusing. It is **not** the same as Jupyter's `--notebook-dir` and `--ServerApp.root_dir` options. The default is `${fileDirname}` (leave it).
+In VS Code's [`settings.json`](./.vscode/settings.json), `jupyter.notebookFileRoot` essentially sets the _working directory_ for notebooks, which affects relative paths. It is **not** the same as Jupyter's `--notebook-dir` and `--ServerApp.root_dir` options. The default is `${fileDirname}` (leave it).
 
 ### Databases [:top:](#contents)
 
 With JupySQL you can connect to an in-memory SQLite database using `%sql sqlite://` or an in-memory DuckDB database using `%sql duckdb://`. [Read the docs](https://jupysql.ploomber.io) for more.
-
-To actually run a database container inside your Codespace, you'll want to use [Docker-in-Docker](https://github.com/devcontainers/features/tree/main/src/docker-in-docker).
 
 ### Exporting PDFs [:top:](#contents)
 
 You need to install `pandoc` and `basictex`.
 
 > [!WARNING]
-> Do not install `mactex` as it is a 5GB suite of Tex tools you *might* not need.
+> Don't install `mactex` unless you're sure (it's 5GB).
 
 ```sh
 brew install pandoc
@@ -143,32 +142,5 @@ Now you can convert a notebook to a PDF:
 
 ```sh
 # creates notebooks/your_notebook.pdf with default styling
-poetry run jupyter nbconvert notebooks/your_notebook.ipynb --to pdf
+jupyter nbconvert notebooks/your_notebook.ipynb --to pdf
 ```
-
-### Codespace Simple Browser [:top:](#contents)
-
-Codespaces have an embedded [Simple Browser](https://github.blog/changelog/2022-10-20-introducing-the-codespaces-simple-browser)[^1] that can be opened automatically when launching an application. **I'm not able to get it working at the moment.**
-
-> I just wanted to see if this was possible; you _probably_ want to use a full browser tab.
-
-You can open the Simple Browser manually by right-clicking a port and selecting "Preview in editor". To have it open automatically, add this to [`devcontainer.json`](./.devcontainer/devcontainer.json):
-
-```json
-"portsAttributes": {
-  "8888": {
-    "label": "Jupyter",
-    "onAutoForward": "openPreview"
-  }
-}
-```
-
-Add this to the `jupyter_opts_codespace` variable in the [`Makefile`](./Makefile)[^2]:
-
-```sh
---ServerApp.tornado_settings="{'headers': {'Content-Security-Policy': \"frame-ancestors https://${CODESPACE_NAME}-8888.${GITHUB_CODESPACES_PORT_FORWARDING_DOMAIN} 'self' \"}}"
-```
-
-[^1]: https://docs.github.com/en/codespaces/troubleshooting/troubleshooting-github-codespaces-clients#troubleshooting-the-simple-browser
-
-[^2]: https://jupyter-server.readthedocs.io/en/latest/operators/public-server.html#embedding-the-notebook-in-another-website

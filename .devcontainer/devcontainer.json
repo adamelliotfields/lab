@@ -1,6 +1,7 @@
 {
   "name": "jupyter",
   "image": "mcr.microsoft.com/devcontainers/universal:2-focal",
+  // uncomment to install deps when codespace is being created
   // "waitFor": "updateContentCommand",
   // "updateContentCommand": "make",
   "forwardPorts": [8888],
