@@ -7,23 +7,44 @@
 
 See [`Makefile`](./Makefile).
 
-```bash
-# this goes in your RC files (~/.bashrc, ~/.zshrc, etc)
-export PYDEVD_DISABLE_FILE_VALIDATION=1
-export PATH="${HOME}/.local/bin:${PATH}"
+**Local**
 
-# this installs dependencies
+```bash
+# create virtual env
+make venv
+
+# activate
+source venv/bin/activate
+
+# install dependencies
+make pip
+
+# install optional node dependencies and tslab kernel
+make tslab
+
+# run the lab server (venv must be activated)
 make
 
-# this runs the server (optional)
-make jupyter
+# exit virtual env
+deactivate
+```
+
+**Codespace**
+
+```bash
+# install dependencies (no need for venv in container)
+make pip
+
+# run the server
+make
 ```
 
 ## Notes
 
-### Contents
+**Contents**
 * [Cloning This Repository](#cloning-this-repository)
 * [Devcontainers](#devcontainers)
+* [Virtual Environments](#virtual-environments)
 * [AI](#ai)
 * [Kaggle](#kaggle)
 * [VS Code](#vs-code)
@@ -53,9 +74,11 @@ The default devcontainer used by Codespaces is the [`universal`](https://github.
 
 The [`python`](https://github.com/devcontainers/images/tree/main/src/python) image is more for building Python packages or apps. It includes dev tools, but no data science-y stuff (no Jupyter). It comes with NVM, but Node is not pre-installed.
 
-Using a virtual environment or an alternative package manager like Pipenv/Poetry means you need to ensure that JupyterLab is running in the same environment. If you use `ipython` from the terminal, then you need to make sure it's running in the same environment as well. For example: `poetry run jupyter lab` and `poetry run ipython`.
+### Virtual Environments [:top:](#contents)
 
-I find that for data projects it's easier to use `requirements.txt`. It's supported by [Binder](https://mybinder.org) and it's also how you define dependencies for apps in 🤗 [Spaces](https://huggingface.co/spaces), so it's good for muscle memory. Finally, using the `universal` devcontainer image means your Codespaces start faster, as everything is installed when the image is built.
+Using a virtual environment or an alternative package manager like Pipenv/Poetry means you need to ensure that JupyterLab is running in the same environment. If you use `ipython` from the terminal, then you need to make sure it's running in the same environment as well. For example: `venv/bin/jupyter lab` or `poetry run ipython`.
+
+I find that for data projects it's easier to use `requirements.txt`. It also works in environments that you don't control like [Colab](https://colab.research.google.com), [Binder](https://mybinder.org) and 🤗 [Spaces](https://huggingface.co/spaces).
 
 ### AI [:top:](#contents)
 
