@@ -1,7 +1,20 @@
-# jupyter
+<div align="center">
+  <!-- Illustration of a vast digital neural network in a 3-dimensional form, spread out in the
+  zero gravity of outer space. The nodes twinkle like stars, and the connecting lines stream like
+  shooting stars. Looming in the distance is Jupiter, its magnificent appearance adding a touch of
+  natural beauty to the digital scene. -->
+  <img src="./jupyter.jpg" width="360" height="270" />
+  <h1><code>jupyter</code></h1>
+  <a href="https://github.com/codespaces/new/adamelliotfields/jupyter?machine=basicLinux32gb&devcontainer_path=.devcontainer/devcontainer.json">
+    <img src="https://img.shields.io/badge/launch-codespace-24292E?logo=github" alt="Launch Codespace" />
+  </a>
+  <a href="https://mybinder.org/v2/gh/adamelliotfields/jupyter/main">
+    <img src="https://mybinder.org/badge_logo.svg" alt="Launch Binder" />
+  </a>
+</div>
+<br />
 
-[![Launch Codespace](https://img.shields.io/badge/launch-codespace-24292E?logo=github)](https://github.com/codespaces/new/adamelliotfields/jupyter?machine=basicLinux32gb&devcontainer_path=.devcontainer/devcontainer.json)
-[![Launch Binder](https://mybinder.org/badge_logo.svg)](https://mybinder.org/v2/gh/adamelliotfields/jupyter/main)
+Instructions and notes on running JupyterLab and writing notebooks.
 
 ## Usage
 
