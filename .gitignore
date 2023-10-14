@@ -2,6 +2,7 @@
 .ipynb_checkpoints/
 .DS_Store
 node_modules/
+venv/
 
 # sakila dataset from kaggle
 sqlite-sakila-db/
