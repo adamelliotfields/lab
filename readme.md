@@ -1,9 +1,5 @@
 <div align="center">
-  <!-- Illustration of a vast digital neural network in a 3-dimensional form, spread out in the
-  zero gravity of outer space. The nodes twinkle like stars, and the connecting lines stream like
-  shooting stars. Looming in the distance is Jupiter, its magnificent appearance adding a touch of
-  natural beauty to the digital scene. -->
-  <img src="./jupyter.jpg" width="360" height="270" />
+  <img src="./jupyter.jpg" width="270" alt="Jupyter over a cosmic data lake" />
   <h1><code>jupyter</code></h1>
   <a href="https://github.com/codespaces/new/adamelliotfields/jupyter?machine=basicLinux32gb&devcontainer_path=.devcontainer/devcontainer.json">
     <img src="https://img.shields.io/badge/launch-codespace-24292E?logo=github" alt="Launch Codespace" />
@@ -14,72 +10,99 @@
 </div>
 <br />
 
-Instructions and notes on running JupyterLab and writing notebooks.
+Notes on running JupyterLab and writing notebooks.
 
 ## Usage
 
 See [`Makefile`](./Makefile).
 
-**Local**
-
 ```bash
-# create virtual env
-make venv
-
-# activate
-source venv/bin/activate
-
-# install dependencies
-make pip
-
-# install optional node dependencies and tslab kernel
-make tslab
-
-# run the lab server (venv must be activated)
-make
-
-# exit virtual env
-deactivate
-```
-
-**Codespace**
-
-```bash
-# install dependencies (no need for venv in container)
-make pip
-
-# run the server
-make
+python -m venv venv
+venv/bin/pip install -r requirements.txt
 ```
 
 ## Notes
 
-**Contents**
-* [Cloning This Repository](#cloning-this-repository)
-* [Devcontainers](#devcontainers)
-* [Virtual Environments](#virtual-environments)
-* [AI](#ai)
-* [Kaggle](#kaggle)
-* [VS Code](#vs-code)
-* [Linting](#linting)
-* [Language Servers](#language-servers)
-* [Kernels](#kernels)
-* [Working Directory](#working-directory)
-* [Databases](#databases)
-* [Exporting PDFs](#exporting-pdfs)
+[Jupyter Notebook](https://jupyter-notebook.readthedocs.io) was originally the web interface for IPython. After a few years, it was [split](https://blog.jupyter.org/the-big-split-9d7b88a031a7) into a separate project. The name is a loose combination of JUlia, PYThon, and R, as it now polyglot.
 
-### Cloning This Repository [:top:](#contents)
+> [!NOTE]
+> I use "notebook" to refer to the file format and "Notebook" to refer to the application.
 
-The name _jupyter_ appears in:
-  * [`devcontainer.json`](./.devcontainer/devcontainer.json)
-  * [`package-lock.json`](./package-lock.json)
-  * [`package.json`](./package.json)
-  * [`pyproject.toml`](./pyproject.toml)
-  * [`readme.md`](./readme.md)
+[JupyterLab](https://jupyterlab.readthedocs.io) is the next-gen web IDE for notebooks. The backend runs on Tornado and communicates with kernels (runtimes) over ZeroMQ.
 
-You probably want to change it to the name of your project.
+[JupyterLite](https://jupyterlite.readthedocs.io) is JupyterLab running entirely in the browser. It uses [Pyodide](https://pyodide.org), which is CPython ported to WebAssembly via Emscripten. Because everything is running in Web Workers in the browser, you can run JS notebooks as well. You can use the version hosted in the docs [here](https://jupyterlite.readthedocs.io/en/stable/_static/lab/index.html).
 
-### Devcontainers [:top:](#contents)
+[Jupyter Console](https://jupyter-console.readthedocs.io) is a terminal-based REPL for Jupyter kernels (IPython by default).
+
+### Desktop
+
+There is an official Electron-based [desktop app](https://github.com/jupyterlab/jupyterlab-desktop).
+
+JetBrains includes [DataSpell](https://www.jetbrains.com/dataspell) in their all-products subscription. It has database support and GitHub Copilot.
+
+For mobile, there's [Juno](https://juno.sh).
+
+For GPU acceleration on macOS, PyTorch has support for Metal now and Apple provides a [plugin](https://developer.apple.com/metal/tensorflow-plugin) for TensorFlow.
+
+### Cloud
+
+#### [Kaggle](https://www.kaggle.com)
+
+Kaggle is totally free. Each week you get 30 hours of GPU time and 20 hours of TPU time. You can also store up to 100GB of datasets.
+
+#### [Google Colab](https://colab.research.google.com)
+
+Colab is also free, but based on platform availability. For $10/mo you get access to Google's Code LLM, Codey, and 100 compute units. For $50/mo you get 500 compute units and your notebooks can execute in the background for up to 24hrs. Beyond the plans, additonal packs of 100 units are $10 each.
+
+Compute units are a combination of CPU, GPU/TPU, and RAM. The base VM is 2 vCPU and 12GB RAM and uses 0.08 units/hr. For 0.12 units/hr you get 8 vCPU and 48GB RAM. A TPU or T4 is ~2 units/hr, and a V100 is ~5 units/hr.
+
+Colab is part of Google Drive, so your notebooks are always in the cloud and your notebooks can read other files from your Drive. You can even connect Colab to a local Jupyter server or Docker container. Every notebook already has a ton of packages installed so you can start coding immediately.
+
+#### [Paperspace](https://www.paperspace.com/notebooks)
+
+The free plan is limited to public notebooks only. For $8/mo you get access to better hardware and private notebooks, and $35/mo gives you access to even better GPUs.
+
+Each plan has different free VMs available on a first-come, first-serve basis. If all of the allocated VMs are being used, you have to wait in line. This applies to CPU-only VMs as well.
+
+If there are no free VMs available and you don't want to wait, you can pay-per-hour. CPU-only machines are only a few cents and you can scale up to 8x A100s for $25/hr.
+
+Paperspace is now part of Digital Ocean, so they also offer a private container registry and model endpoint hosting. You can deploy your trained models to production on the same platform.
+
+#### [JetBrains DataLore](https://www.jetbrains.com/datalore)
+
+Looks like DataSpell in the cloud for $20/mo. Seems like it would make sense for companies using other JetBrains cloud services like Spaces and YouTrack.
+
+#### [Binder](https://mybinder.org)
+
+A free public service sponsored by OVH Cloud and the GESIS-Leibniz Institute that converts a public Git repo to a Docker container and runs it in the cloud. It uses [`repo2docker`](https://github.com/jupyterhub/repo2docker) under the hood to build the container. No account necessary. Click [here](https://mybinder.org/v2/gh/fastai/numerical-linear-algebra/master) to run the [fast.ai Computational Linear Algebra](https://www.fast.ai/posts/2017-07-17-num-lin-alg.html) course on Binder.
+
+#### [nbviewer](https://nbviewer.org)
+
+A web application for rendering notebooks hosted on GitHub. [Here](https://nbviewer.org/github/rlabbe/Kalman-and-Bayesian-Filters-in-Python/blob/master/01-g-h-filter.ipynb) is the first chapter of the [Kalman and Bayesian Filters](https://github.com/rlabbe/Kalman-and-Bayesian-Filters-in-Python) book by Roger Labbe.
+
+### VS Code
+
+When opening a notebook for the first time you'll need to [pick the Jupyter kernel](https://code.visualstudio.com/docs/datascience/jupyter-kernel-management) to use.
+
+If you do not get IntelliSense, then you have to <kbd>⌘</kbd>+<kbd>⇧</kbd>+<kbd>P</kbd> `Reload Window`.
+
+#### Server
+
+If you want to connect to a running Jupyter server instead of a local runtime, you have to add the `token` query parameter to the URL.
+
+```
+http://localhost:8888?token=''
+```
+
+#### Linting and Formatting
+
+The [Pylance](https://marketplace.visualstudio.com/items?itemName=ms-python.vscode-pylance) extension (which is included with the [Python](https://marketplace.visualstudio.com/items?itemName=ms-python.python) extension) works out-of-the-box. You can enable type-checking by setting `python.analysis.typeCheckingMode` to **basic** or **strict**.
+
+I'd like to add [Ruff](https://github.com/astral-sh/ruff) when it works in notebooks (waiting for astral-sh/ruff-vscode#256 and astral-sh/ruff-lsp#264 to be released).
+
+[Black](https://github.com/psf/black) formatter works (see [`settings.json`](./.vscode/settings.json)).
+
+### Devcontainers
 
 GitHub has an "Open in JupyterLab" button that will run the JupyterLab server automatically. This works if your devcontainer has `jupyter` installed.
 
@@ -87,76 +110,84 @@ The default devcontainer used by Codespaces is the [`universal`](https://github.
 
 The [`python`](https://github.com/devcontainers/images/tree/main/src/python) image is more for building Python packages or apps. It includes dev tools, but no data science-y stuff (no Jupyter). It comes with NVM, but Node is not pre-installed.
 
-### Virtual Environments [:top:](#contents)
+### AI
 
-Using a virtual environment or an alternative package manager like Pipenv/Poetry means you need to ensure that JupyterLab is running in the same environment. If you use `ipython` from the terminal, then you need to make sure it's running in the same environment as well. For example: `venv/bin/jupyter lab` or `poetry run ipython`.
+#### [`jupyter-ai`](https://jupyter-ai.readthedocs.io/en/latest/users/index.html)
 
-I find that for data projects it's easier to use `requirements.txt`. It also works in environments that you don't control like [Colab](https://colab.research.google.com), [Binder](https://mybinder.org) and 🤗 [Spaces](https://huggingface.co/spaces).
+Adds a chat widget to JupyterLab that can use different LLM APIs. Also adds an `%ai` magic so you can interact with LLMs from within notebook cells.
 
-### AI [:top:](#contents)
+It also includes slash commands powered by LangChain. For example, the `/generate` command will request an entire notebook to be built for you. The `/learn` command will embed a folder of files into a local vector database for [RAG](https://ai.meta.com/blog/retrieval-augmented-generation-streamlining-the-creation-of-intelligent-natural-language-processing-models/).
 
-I've installed the [`openai`](https://pypi.org/project/openai) and [`jupyter-ai`](https://pypi.org/project/jupyter-ai) packages, so you only need to export `OPENAI_API_KEY` in whatever shell you're using. You'll need to create a [Codespace secret](https://docs.github.com/en/codespaces/managing-your-codespaces/managing-encrypted-secrets-for-your-codespaces) as well.
+#### [`pandasai`](https://github.com/gventuri/pandas-ai)
 
-### Kaggle [:top:](#contents)
+Sends a sample of your data to the OpenAI API to give the LLM context and then generates and runs the code. It can even send faulty generated code back for troubleshooting.
 
-The [Kaggle CLI](https://www.kaggle.com/docs/api) allows you to easily download datasets. You need to export `KAGGLE_USERNAME` and `KAGGLE_KEY`.
+```py
+from pandasai import SmartDataframe
+from pandasai.llm import OpenAI
+from sklearn.datasets import load_iris
 
-### VS Code [:top:](#contents)
+iris = load_iris()
+llm = OpenAI(api_token="your_token")
+sdf = SmartDataframe(iris, config={'llm': llm})
 
-When opening a notebook for the first time you'll need to [pick the Jupyter kernel](https://code.visualstudio.com/docs/datascience/jupyter-kernel-management) to use. If you want to connect to the running Jupyter server, you have to add the `token` query parameter to the URL.
-
-> [!IMPORTANT]
-> The empty quotes are required.
-
+sdf.chat('Scatter plot sepal length vs width.')
 ```
-http://localhost:8888?token=''
+
+#### [`jupytercoder`](https://github.com/bigcode-project/jupytercoder)
+
+This is a Chrome extension from BigCode (HuggingFace + ServiceNow) that uses the [StarCoder](https://huggingface.co/blog/starcoder) LLM to autocomplete in JupyterLab like GitHub Copilot.
+
+### Interactivity
+
+You can render websites as HTML strings using IPython's `HTML` class:
+
+```py
+from IPython.display import HTML
+display(HTML('<p style="margin: 0">Hello, world!</p>'))
 ```
 
-If you do not get IntelliSense, then you have to <kbd>⌘</kbd>+<kbd>⇧</kbd>+<kbd>P</kbd> `Reload Window`. You can also try `Python: Clear Cache and Reload Window` which additionally refreshes the available Python interpreters.
+Or with the `%%html` magic:
 
-### Linting [:top:](#contents)
+```html
+%%html
+<div id="root"></div>
+<script src="https://unpkg.com/react@17/umd/react.development.js"></script>
+<script src="https://unpkg.com/react-dom@17/umd/react-dom.development.js"></script>
+<script>
+    const e = React.createElement
+    const root = document.querySelector('#root')
+    const onClick = () => alert('Hola!')
+    const Button = () => e('button', { onClick }, 'Click me!')
+    const App = () => (
+        e(React.Fragment, null,
+            e('div', { style: { margin: '0 0 4px' } }, '⚛️'),
+            e(Button)
+        )
+    )
+    ReactDOM.render(e(App), root)
+</script>
+```
 
-[Black](https://github.com/psf/black) is installed and I've set `notebook.formatOnSave.enabled` in [`settings.json`](./.vscode/settings.json).
+But for more complex interactivity, you'll want to use a widget library. The most popular is [`ipywidgets`](https://github.com/jupyter-widgets/ipywidgets). You can even render your interactive notebook as a web app using [`voila`](https://github.com/voila-dashboards/voila).
 
-For linting, the [Pylance](https://marketplace.visualstudio.com/items?itemName=ms-python.vscode-pylance) extension (which is included with the [Python](https://marketplace.visualstudio.com/items?itemName=ms-python.python) extension) works out-of-the-box. You can enable type-checking by setting `python.analysis.typeCheckingMode` to **basic** or **strict**.
+### Git
 
-I'd like to add [Ruff](https://github.com/astral-sh/ruff) when it works in notebooks in VS Code (astral-sh/ruff-vscode#256).
+Notebooks are just JSON files but they aren't meant to be human-readable. Running a notebook in different applications will change the metadata. This can be messy if you are a `git add .` person.
 
-### Language Servers [:top:](#contents)
+For viewing diffs, use [`nbdime`](https://github.com/jupyter/nbdime). It can also aid with merging notebooks if you need it. For interacting with Git inside Jupyter, install the [`jupyterlab-git`](https://github.com/jupyterlab/jupyterlab-git) extension.
 
-You can install additional [language servers](https://jupyterlab-lsp.readthedocs.io/en/latest/Language%20Servers.html) via npm. I've included the [Bash language server](https://github.com/bash-lsp/bash-language-server).
-
-Note that they are mostly for the file editor, not notebooks. For notebooks, you probably want [kernels](https://github.com/jupyter/jupyter/wiki/Jupyter-kernels).
-
-### Kernels [:top:](#contents)
-
-Each kernel has its own installation instructions. I've included the [tslab](https://github.com/yunabe/tslab) kernel for TypeScript and [JupySQL](https://github.com/ploomber/jupysql) for SQL. Also check out the [evcxr](https://github.com/evcxr/evcxr) kernel for Rust.
-
-Use the `kernelspec` command to manage kernels:
+If you prefer to store your notebooks in Markdown for clean diffs, use [`jupytext`](https://github.com/mwouts/jupytext) for 2-way conversion between `.ipynb` and `.md`.
 
 ```sh
-jupyter kernelspec list
+pipx install jupytext
+jupytext --from=md:markdown --to=ipynb --opt=split_at_heading=true notebook.md
+jupytext --from=ipynb --to=md:markdown notebook.ipynb
 ```
 
-To remove all the kernels:
+### PDF
 
-```sh
-jupyter kernelspec remove -y jslab tslab
-```
-
-### Working Directory [:top:](#contents)
-
-There are a couple settings that affect how you load data (e.g., `pd.read_csv()`).
-
-In VS Code's [`settings.json`](./.vscode/settings.json), `jupyter.notebookFileRoot` essentially sets the _working directory_ for notebooks, which affects relative paths. It is **not** the same as Jupyter's `--notebook-dir` and `--ServerApp.root_dir` options. The default is `${fileDirname}` (leave it).
-
-### Databases [:top:](#contents)
-
-With JupySQL you can connect to an in-memory SQLite database using `%sql sqlite://` or an in-memory DuckDB database using `%sql duckdb://`. [Read the docs](https://jupysql.ploomber.io) for more.
-
-### Exporting PDFs [:top:](#contents)
-
-You need to install `pandoc` and `basictex`.
+You need to install `pandoc` and `basictex` to export to PDF.
 
 > [!WARNING]
 > Don't install `mactex` unless you're sure (it's 5GB).
