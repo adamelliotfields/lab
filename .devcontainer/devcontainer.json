@@ -1,15 +1,14 @@
 {
-  "name": "jupyter",
-  "image": "mcr.microsoft.com/devcontainers/universal:2-focal",
-  "forwardPorts": [8888],
+  "name": "lab",
+  "image": "mcr.microsoft.com/devcontainers/python:3-bookworm",
+  "forwardPorts": [8000, 8888],
   "customizations": {
     "vscode": {
       "extensions": [
+        "charliermarsh.ruff",
         "mechatroner.rainbow-csv",
-        "ms-python.black-formatter",
         "ms-python.python",
         "ms-toolsai.jupyter",
-        "ms-toolsai.vscode-jupyter-powertoys",
         "tamasfe.even-better-toml"
       ]
     }

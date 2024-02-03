@@ -1,14 +1,21 @@
 {
   "editor.rulers": [99],
-  "jupyter.askForKernelRestart": false,
   "notebook.formatOnSave.enabled": true,
-  "python.terminal.activateEnvironment": false,
+  "notebook.codeActionsOnSave": {
+    "notebook.source.fixAll.ruff": "explicit",
+    "notebook.source.organizeImports.ruff": "explicit"
+  },
   "[makefile]": {
     "editor.detectIndentation": false,
     "editor.insertSpaces": false
   },
   "[python]": {
-    "editor.defaultFormatter": "ms-python.black-formatter",
-    "editor.formatOnSave": true
+    "editor.defaultFormatter": "charliermarsh.ruff",
+    "editor.formatOnSave": true,
+    "editor.tabSize": 4,
+    "editor.codeActionsOnSave": {
+      "source.fixAll.ruff": "explicit",
+      "source.organizeImports.ruff": "explicit"
+    }
   }
 }
