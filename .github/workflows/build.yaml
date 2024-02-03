@@ -23,7 +23,7 @@ jobs:
         with:
           python-version: 3.10.13
       - name: Install dependencies
-        run: python -m pip install -r requirements.txt
+        run: python -m pip install -r requirements-lite.txt
       - name: Build
         run: make build
       - name: Upload artifact
