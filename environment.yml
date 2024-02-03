@@ -1,0 +1,26 @@
+name: lab
+channels:
+  - conda-forge
+  - defaults
+  - nvidia
+  - pytorch
+dependencies:
+  - python=3.10.13
+  - autograd=1.6.2
+  - ipycanvas=0.13.1
+  - ipywidgets=8.1.1
+  - jupyterlab=4.0.12
+  - jupyterlite-core=0.2.3
+  - jupyterlite-javascript-kernel=0.2.3
+  - jupyterlite-pyodide-kernel=0.2.1
+  - matplotlib=3.8.2
+  - neuralprophet=0.6.2
+  - pandas=1.5.3
+  - python-dotenv=1.0.1
+  - ruff=0.1.15
+  - scikit-learn=1.4.0
+  - seaborn=0.13.2
+  - yellowbrick=1.5
+  - pip
+  - pip:
+    - alpaca-py==0.14.0
