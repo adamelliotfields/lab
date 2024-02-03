@@ -1,12 +1,8 @@
+__pycache__/
+_output/
 .idea/
 .ipynb_checkpoints/
 .DS_Store
+.jupyterlite.doit.db
 node_modules/
 venv/
-
-# sakila dataset from kaggle
-sqlite-sakila-db/
-README.txt
-SQLite3\ Sakila\ Sample\ Database\ ERD.png
-sqlite-sakila-sample-database.zip
-sqlite-sakila.db
