@@ -15,11 +15,11 @@ endif
 
 .PHONY: build
 build:
-	@jupyter lite build --contents=notebooks
+	@jupyter lite build
 
 .PHONY: lite
 lite:
-	@jupyter lite serve --contents=notebooks
+	@jupyter lite serve
 
 .PHONY: clean
 clean:

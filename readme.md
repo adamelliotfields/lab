@@ -7,7 +7,7 @@
 </div>
 <br />
 
-[Notebooks](./notebooks) and [aef.me/lab](https://aef.me/lab/).
+[Notebooks](./files) and [aef.me/lab](https://aef.me/lab/).
 
 ## Installation
 
