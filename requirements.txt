@@ -10,9 +10,12 @@ jupyterlite-pyodide-kernel==0.2.1
 matplotlib==3.8.2
 neuralprophet==0.6.2
 pandas==1.5.3
+plotly==5.18.0
 python-dotenv==1.0.1
 ruff==0.1.15
 scikit-learn==1.4.0
 scipy==1.12.0
 seaborn==0.13.2
+statsmodels==0.14.1
+sympy==1.12
 yellowbrick==1.5

@@ -13,14 +13,18 @@ else
 	@jupyter lab $(jupyter_opts)
 endif
 
-.PHONY: build
-build:
-	@jupyter lite build
-
 .PHONY: lite
 lite:
 	@jupyter lite serve
 
+.PHONY: build
+build:
+	@jupyter lite build
+
+.PHONY: preview
+preview:
+	@python -m http.server -d _output
+
 .PHONY: clean
 clean:
-	@rm -rf _output .jupyterlite.doit.db
+	@rm -rf _output .jupyterlite.doit.db files/.ipynb_checkpoints files/lightning_logs
