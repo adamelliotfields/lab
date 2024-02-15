@@ -25,6 +25,10 @@ build:
 preview:
 	@python -m http.server -d _output
 
+.PHONY: tensorboard
+tensorboard:
+	@tensorboard --logdir files/lightning_logs
+
 .PHONY: clean
 clean:
 	@rm -rf _output .jupyterlite.doit.db files/.ipynb_checkpoints files/lightning_logs
