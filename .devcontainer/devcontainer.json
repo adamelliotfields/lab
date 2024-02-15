@@ -1,7 +1,7 @@
 {
   "name": "lab",
   "image": "mcr.microsoft.com/devcontainers/python:3-bookworm",
-  "forwardPorts": [8000, 8888],
+  "forwardPorts": [6006, 8000, 8888],
   "customizations": {
     "vscode": {
       "extensions": [
