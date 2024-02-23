@@ -26,6 +26,12 @@ conda env create -f environment.yml
 conda activate lab
 ```
 
+### Deno
+
+```sh
+deno jupyter --install
+```
+
 ## Usage
 
 To run the JupyterLab server on [:8888](http://localhost:8888):
