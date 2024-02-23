@@ -1,6 +1,7 @@
 {
   "recommendations": [
     "charliermarsh.ruff",
+    "denoland.vscode-deno",
     "mechatroner.rainbow-csv",
     "ms-python.python",
     "ms-toolsai.jupyter",

@@ -1,4 +1,5 @@
 {
+  "deno.enable": true,
   "editor.rulers": [99],
   "notebook.formatOnSave.enabled": true,
   "notebook.codeActionsOnSave": {
