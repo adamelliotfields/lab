@@ -4,6 +4,6 @@ _output/
 .ipynb_checkpoints/
 .DS_Store
 .jupyterlite.doit.db
+.venv/
 lightning_logs/
 node_modules/
-venv/
