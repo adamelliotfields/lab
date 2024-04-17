@@ -1,10 +1,10 @@
 {
   "recommendations": [
     "charliermarsh.ruff",
-    "denoland.vscode-deno",
-    "mechatroner.rainbow-csv",
     "ms-python.python",
+    "ms-toolsai.datawrangler",
     "ms-toolsai.jupyter",
+    "njpwerner.autodocstring",
     "tamasfe.even-better-toml"
   ],
   "unwantedRecommendations": [

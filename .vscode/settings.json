@@ -1,22 +1,35 @@
 {
-  "deno.enable": true,
   "editor.rulers": [99],
+
+  "files.exclude": {
+    "**/.ipynb_checkpoints/**": true,
+    "_output/**": true,
+    ".venv/**": true
+  },
+  "files.watcherExclude": {
+    "**/.ipynb_checkpoints/**": true,
+    "_output/**": true,
+    ".venv/**": true
+  },
+
   "notebook.formatOnSave.enabled": true,
   "notebook.codeActionsOnSave": {
     "notebook.source.fixAll.ruff": "explicit",
-    "notebook.source.organizeImports.ruff": "explicit"
+    "notebook.source.organizeImports.ruff": "never"
   },
+
   "[makefile]": {
     "editor.detectIndentation": false,
     "editor.insertSpaces": false
   },
+
   "[python]": {
     "editor.defaultFormatter": "charliermarsh.ruff",
     "editor.formatOnSave": true,
     "editor.tabSize": 4,
     "editor.codeActionsOnSave": {
       "source.fixAll.ruff": "explicit",
-      "source.organizeImports.ruff": "explicit"
+      "source.organizeImports.ruff": "never"
     }
   }
 }

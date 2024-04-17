@@ -14,22 +14,16 @@
 ### Pip
 
 ```sh
-python -m venv venv
-source venv/bin/activate
+python -m venv .venv
+source .venv/bin/activate
 pip install -r requirements.txt
 ```
 
-### Conda
+### Mamba
 
 ```sh
-conda env create -f environment.yml
-conda activate lab
-```
-
-### Deno
-
-```sh
-deno jupyter --install
+mamba env create -f environment.yml
+mamba activate lab
 ```
 
 ## Usage
