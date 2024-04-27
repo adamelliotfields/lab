@@ -4,6 +4,7 @@
     "ms-python.python",
     "ms-toolsai.datawrangler",
     "ms-toolsai.jupyter",
+    "msrvida.vscode-sanddance",
     "njpwerner.autodocstring",
     "tamasfe.even-better-toml"
   ],

@@ -1,4 +1,3 @@
-<!-- readme file for jupyterlite instance explaining what it is, what it does, and how to use it -->
 # `README`
 
 Welcome to the [`lab`](https://aef.me/lab/lab/index.html) 🧪
