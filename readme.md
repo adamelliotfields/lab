@@ -11,19 +11,10 @@
 
 ## Installation
 
-### Pip
-
 ```sh
 python -m venv .venv
 source .venv/bin/activate
 pip install -r requirements.txt
-```
-
-### Mamba
-
-```sh
-mamba env create -f environment.yml
-mamba activate lab
 ```
 
 ## Usage
