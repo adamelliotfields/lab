@@ -1,5 +1,6 @@
 __pycache__/
 _output/
+.env
 .idea/
 .ipynb_checkpoints/
 .DS_Store
