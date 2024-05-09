@@ -3,11 +3,13 @@
 
   "files.exclude": {
     "**/.ipynb_checkpoints/**": true,
+    "**/lightning_logs/**": true,
     "_output/**": true,
     ".venv/**": true
   },
   "files.watcherExclude": {
     "**/.ipynb_checkpoints/**": true,
+    "**/lightning_logs/**": true,
     "_output/**": true,
     ".venv/**": true
   },
