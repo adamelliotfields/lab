@@ -5,13 +5,17 @@
     "**/.ipynb_checkpoints/**": true,
     "**/lightning_logs/**": true,
     "_output/**": true,
-    ".venv/**": true
+    ".venv/**": true,
+    "files/data/*.bz2": true,
+    "files/data/*.csv": true
   },
   "files.watcherExclude": {
     "**/.ipynb_checkpoints/**": true,
     "**/lightning_logs/**": true,
     "_output/**": true,
-    ".venv/**": true
+    ".venv/**": true,
+    "files/data/*.bz2": true,
+    "files/data/*.csv": true
   },
 
   "notebook.formatOnSave.enabled": true,
