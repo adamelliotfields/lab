@@ -16,6 +16,7 @@ Notebooks and [lab.aef.me](https://lab.aef.me).
 - [Monash](./files/monash.ipynb): Exploring some of [Monash](https://forecastingdata.org)'s datasets on [🤗](https://huggingface.co/datasets/monash_tsf).
 - [NeuralProphet](./files/neuralprophet.ipynb): Demonstration of forecasting [airline passengers](https://www.rdocumentation.org/packages/datasets/topics/AirPassengers) with [NeuralProphet](https://github.com/ourownstory/neural_prophet).
 - [Plotly](./files/plotly.ipynb): [PX](https://plotly.com/python/plotly-express/) examples.
+- [Profiling](./files/profiling.ipynb): Demo of [Ydata-profiling](https://github.com/ydataai/ydata-profiling) FKA Pandas Profiling
 - [Sklearn](./files/sklearn.ipynb): A walkthrough of [Scikit-learn](https://github.com/scikit-learn/scikit-learn).
 - [Sktime](./files/sktime.ipynb): Forecasting [sunspots](https://www.rdocumentation.org/packages/datasets/topics/sunspots) with models from [Sktime](https://github.com/sktime/sktime).
 - [Statsmodels](./files/statsmodels.ipynb): Visualizing various datasets included with [Statsmodels](https://github.com/statsmodels/statsmodels).
@@ -33,6 +34,7 @@ Notebooks and [lab.aef.me](https://lab.aef.me).
 
 ### Datasets
 
+- [Diabetes](./files/data/diabetes.ipynb): Original unscaled version from [2003](https://hastie.su.domains/Papers/LARS/LeastAngle_2002.pdf).
 - [Hatch](./files/data/hatch.ipynb): 18,000+ UFO sightings from 593 BCE to 2003 CE.
 - [SPY-VXX](./files/data/spy_vxx.ipynb): SPY and VXX 1-minute OHLCV data for 2020.
 - [USPS](./files/data/usps.ipynb): Digit classification dataset from [1989](http://yann.lecun.com/exdb/publis/pdf/lecun-89e.pdf).

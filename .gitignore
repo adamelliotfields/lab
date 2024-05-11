@@ -8,3 +8,4 @@ _output/
 .venv/
 lightning_logs/
 node_modules/
+ydata_profiling/
