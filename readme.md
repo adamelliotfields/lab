@@ -16,6 +16,7 @@ Notebooks and [lab.aef.me](https://lab.aef.me).
 - [Monash](./files/monash.ipynb): Exploring some of [Monash](https://forecastingdata.org)'s datasets on [🤗](https://huggingface.co/datasets/monash_tsf).
 - [NeuralProphet](./files/neuralprophet.ipynb): Demonstration of forecasting [airline passengers](https://www.rdocumentation.org/packages/datasets/topics/AirPassengers) with [NeuralProphet](https://github.com/ourownstory/neural_prophet).
 - [Plotly](./files/plotly.ipynb): [PX](https://plotly.com/python/plotly-express/) examples.
+- [Sklearn](./files/sklearn.ipynb): A walkthrough of [Scikit-learn](https://github.com/scikit-learn/scikit-learn).
 - [Sktime](./files/sktime.ipynb): Forecasting [sunspots](https://www.rdocumentation.org/packages/datasets/topics/sunspots) with models from [Sktime](https://github.com/sktime/sktime).
 - [Statsmodels](./files/statsmodels.ipynb): Visualizing various datasets included with [Statsmodels](https://github.com/statsmodels/statsmodels).
 - [Sympy](./files/sympy.ipynb): Plotting algebraic functions with [SymPy](https://www.sympy.org/en/index.html).
