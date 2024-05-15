@@ -13,6 +13,7 @@ Notebooks and [lab.aef.me](https://lab.aef.me).
 
 - [Autograd](./files/autograd.ipynb): "From scratch" [iris](https://www.rdocumentation.org/packages/datasets/topics/iris) classifier neural network with [Autograd](https://github.com/HIPS/autograd).
 - [Draw](./files/draw.ipynb): Drawing app made with [ipywidgets](https://github.com/jupyter-widgets/ipywidgets) and [ipycanvas](https://github.com/jupyter-widgets-contrib/ipycanvas).
+- [EDA](./files/eda.ipynb): Snippets and notes on exploratory data analysis.
 - [Monash](./files/monash.ipynb): Exploring some of [Monash](https://forecastingdata.org)'s datasets on [🤗](https://huggingface.co/datasets/monash_tsf).
 - [NeuralProphet](./files/neuralprophet.ipynb): Demonstration of forecasting [airline passengers](https://www.rdocumentation.org/packages/datasets/topics/AirPassengers) with [NeuralProphet](https://github.com/ourownstory/neural_prophet).
 - [Plotly](./files/plotly.ipynb): [PX](https://plotly.com/python/plotly-express/) examples.
