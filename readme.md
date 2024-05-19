@@ -14,6 +14,7 @@ Notebooks and [lab.aef.me](https://lab.aef.me).
 - [Autograd](./files/autograd.ipynb): "From scratch" [iris](https://www.rdocumentation.org/packages/datasets/topics/iris) classifier neural network with [Autograd](https://github.com/HIPS/autograd).
 - [Draw](./files/draw.ipynb): Drawing app made with [ipywidgets](https://github.com/jupyter-widgets/ipywidgets) and [ipycanvas](https://github.com/jupyter-widgets-contrib/ipycanvas).
 - [EDA](./files/eda.ipynb): Snippets and notes on exploratory data analysis.
+- [Functions](./files/functions.ipynb): Explanations and illustrations of activations, loss functions, and optimization algorithms.
 - [Monash](./files/monash.ipynb): Exploring some of [Monash](https://forecastingdata.org)'s datasets on [🤗](https://huggingface.co/datasets/monash_tsf).
 - [NeuralProphet](./files/neuralprophet.ipynb): Demonstration of forecasting [airline passengers](https://www.rdocumentation.org/packages/datasets/topics/AirPassengers) with [NeuralProphet](https://github.com/ourownstory/neural_prophet).
 - [Plotly](./files/plotly.ipynb): [PX](https://plotly.com/python/plotly-express/) examples.
@@ -25,13 +26,15 @@ Notebooks and [lab.aef.me](https://lab.aef.me).
 - [Widgets](./files/widgets.ipynb): Interactive widget examples with [Ipywidgets](https://github.com/jupyter-widgets/ipywidgets).
 - [Yellowbrick](./files/yellowbrick.ipynb): Visualizing a Random Forest classifier with [Yellowbrick](https://github.com/DistrictDataLabs/yellowbrick).
 
+### TensorFlow
+
+- [MNIST](./files/tf/mnist.ipynb): [LeNet-5](https://en.wikipedia.org/wiki/LeNet) implementation for [MNIST](https://en.wikipedia.org/wiki/MNIST_database) with demo app.
+- [TensorBoard](./files/tf/tensorboard.ipynb): Watch your tensors flow with TensorBoard and Keras Tuner.
+- [XOR](./files/tf/xor.ipynb): XOR classifier with demo app.
+
 ### PyTorch
 
 - [Iris](./files/torch/iris.ipynb): Iris classifier with [Lighting](https://github.com/Lightning-AI/pytorch-lightning) for training.
-
-### TensorFlow
-
-- [XOR](./files/tf/xor.ipynb): XOR classifier.
 
 ### Datasets
 
@@ -46,6 +49,17 @@ Notebooks and [lab.aef.me](https://lab.aef.me).
 python -m venv .venv
 source .venv/bin/activate
 pip install -r requirements.txt
+
+# graphviz
+sudo apt install -y graphviz
+
+# ta-lib
+wget https://github.com/TA-Lib/ta-lib/releases/download/v0.4.0/ta-lib-0.4.0-src.tar.gz
+tar -xvf ta-lib-0.4.0-src.tar.gz
+cd ta-lib
+./configure --prefix=/usr
+make
+sudo make install
 ```
 
 ## Usage
