@@ -23,6 +23,8 @@ This architecture enables Transformer models to process all of the input sequenc
 
 * [The Annotated Transformer](https://nlp.seas.harvard.edu/annotated-transformer/)
 * [DataCamp: How Transformers Work](https://www.datacamp.com/tutorial/how-transformers-work)
+* [The Illustrated GPT-2](https://jalammar.github.io/illustrated-gpt2/)
+* [The GPT-3 Architecture, on a Napkin](https://dugas.ch/artificial_curiosity/GPT_architecture.html)
 
 ### Papers
 
