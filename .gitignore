@@ -7,5 +7,6 @@ _output/
 .jupyterlite.doit.db
 .venv/
 lightning_logs/
+logs/
 node_modules/
 ydata_profiling/
