@@ -25,10 +25,16 @@ build:
 preview:
 	@python -m http.server -d _output
 
-.PHONY: tensorboard
-tensorboard:
-	@tensorboard --logdir files/lightning_logs
-
 .PHONY: clean
 clean:
-	@rm -rf _output .jupyterlite.doit.db files/.ipynb_checkpoints files/lightning_logs
+	@rm -rf _output .jupyterlite.doit.db files/.ipynb_checkpoints
+
+# gradio iris app
+.PHONY: iris
+iris:
+	@python files/gradio/iris.py
+
+# gradio todos app
+.PHONY: todos
+todos:
+	@python files/gradio/todos.py

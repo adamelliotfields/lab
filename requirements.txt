@@ -1,4 +1,6 @@
 datasets==2.19.0
+gradio==4.31.5
+graphviz==0.20.3
 ipycanvas==0.13.2
 ipywidgets==8.1.2
 jupyter_contrib_nbextensions==0.7.0
@@ -7,6 +9,9 @@ jupyterlab-filesystem-access==0.6.0
 jupyterlab-night==0.4.6
 jupyterlite-core==0.3.0
 jupyterlite-pyodide-kernel==0.3.1
+keras==3.3.3
+keras-cv==0.9.0
+keras-tuner==1.4.7
 matplotlib==3.8.4
 missingno==0.5.2
 pandas==2.2.2
@@ -25,6 +30,7 @@ statsmodels==0.14.2
 sympy==1.12
 tensorboard==2.16.2
 tensorflow==2.16.1
+tensorflow-datasets==4.9.4
 torch==2.3.0
 torchinfo==1.8.0
 transformers==4.40.1

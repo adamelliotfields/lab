@@ -1,3 +1,5 @@
+*.keras
+*.pkl
 __pycache__/
 _output/
 .env
@@ -6,6 +8,7 @@ _output/
 .DS_Store
 .jupyterlite.doit.db
 .venv/
+gradio_cached_examples/
 lightning_logs/
 logs/
 node_modules/
