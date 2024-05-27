@@ -14,6 +14,7 @@ Each notebook has links to [Colab](https://colab.research.google.com), [Kaggle](
 ## Notebooks
 
 - [**Autograd**](./files/autograd.ipynb): "From scratch" [iris](https://www.rdocumentation.org/packages/datasets/topics/iris) classifier neural network with [Autograd](https://github.com/HIPS/autograd).
+- [**California Housing**](./files/california_housing.ipynb): EDA and regression with the [California Housing](https://www.dcc.fc.up.pt/~ltorgo/Regression/cal_housing.html) dataset.
 - [**Draw**](./files/draw.ipynb): Drawing app made with [ipywidgets](https://github.com/jupyter-widgets/ipywidgets) and [ipycanvas](https://github.com/jupyter-widgets-contrib/ipycanvas).
 - [**EDA**](./files/eda.ipynb): Notes and snippets for exploratory data analysis.
 - [**Functions**](./files/functions.ipynb): Explanations and illustrations of activations, loss functions, and optimization algorithms.
