@@ -1,7 +1,5 @@
 import tensorflow as tf
 
-from keras import datasets
-
 
 # fetches a Keras dataset and returns a TensorFlow Dataset
 # since these are just Numpy matrices, you need to get the column names externally
@@ -15,33 +13,24 @@ def load_keras_dataset(
     test_split=0.2,
     seed=42,
 ):
+    # fmt: off
     if name == "mnist":
-        (X_train, y_train), (X_test, y_test) = datasets.mnist.load_data()
+        (X_train, y_train), (X_test, y_test) = tf.keras.datasets.mnist.load_data()
     elif name == "cifar10":
-        (X_train, y_train), (X_test, y_test) = datasets.cifar10.load_data()
+        (X_train, y_train), (X_test, y_test) = tf.keras.datasets.cifar10.load_data()
     elif name == "cifar100":
-        (X_train, y_train), (X_test, y_test) = datasets.cifar100.load_data(
-            label_mode="fine",
-        )
+        (X_train, y_train), (X_test, y_test) = tf.keras.datasets.cifar100.load_data(label_mode="fine")
     elif name == "imdb":
-        (X_train, y_train), (X_test, y_test) = datasets.imdb.load_data(
-            seed=seed,
-        )
+        (X_train, y_train), (X_test, y_test) = tf.keras.datasets.imdb.load_data(seed=seed)
     elif name == "reuters":
-        (X_train, y_train), (X_test, y_test) = datasets.reuters.load_data(
-            test_split=test_split,
-            seed=seed,
-        )
+        (X_train, y_train), (X_test, y_test) = tf.keras.datasets.reuters.load_data(test_split=test_split, seed=seed)
     elif name == "fashion_mnist":
-        (X_train, y_train), (X_test, y_test) = datasets.fashion_mnist.load_data()
+        (X_train, y_train), (X_test, y_test) = tf.keras.datasets.fashion_mnist.load_data()
     elif name == "california_housing":
-        (X_train, y_train), (X_test, y_test) = datasets.california_housing.load_data(
-            version="large",
-            test_split=test_split,
-            seed=seed,
-        )
+        (X_train, y_train), (X_test, y_test) = tf.keras.datasets.california_housing.load_data(version="large", test_split=test_split, seed=seed)
     else:
         raise ValueError(f"Unknown Keras dataset: {name}")
+    # fmt: on
 
     if as_numpy:
         return (X_train, y_train), (X_test, y_test)
