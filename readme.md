@@ -31,9 +31,9 @@ Each notebook has links to [Colab](https://colab.research.google.com), [Kaggle](
 ### TensorFlow
 
 - [**KerasCV**](./files/tf/keras_cv.ipynb): Visualize advanced image augmentations from [KerasCV](https://keras.io/keras_cv/).
-- [**MNIST**](./files/tf/mnist.ipynb): [LeNet-5](https://en.wikipedia.org/wiki/LeNet) implementation for [MNIST](https://en.wikipedia.org/wiki/MNIST_database) with widgets demo.
+- [**MNIST**](./files/tf/mnist.ipynb): Predict handwritten digits including an ipywidgets demo.
 - [**TensorBoard**](./files/tf/tensorboard.ipynb): Watch your tensors flow with TensorBoard and [Keras Tuner](https://keras.io/keras_tuner/).
-- [**XOR**](./files/tf/xor.ipynb): Exclusive OR classifier with widgets demo.
+- [**XOR**](./files/tf/xor.ipynb): Exclusive OR classifier including an ipywidgets demo.
 
 ### PyTorch
 
@@ -43,8 +43,15 @@ Each notebook has links to [Colab](https://colab.research.google.com), [Kaggle](
 
 - [**Diabetes**](./files/data/diabetes.ipynb): Original unscaled version from [2003](https://hastie.su.domains/Papers/LARS/LeastAngle_2002.pdf).
 - [**Hatch**](./files/data/hatch.ipynb): 18,000+ UFO sightings from 593 BCE to 2003 CE.
-- [**SPY-VXX**](./files/data/spy_vxx.ipynb): SPY and VXX 1-minute OHLCV data for 2020.
+- [**SPY**](./files/data/spy.ipynb): SPY and VXX 1-minute OHLCV data from 2020 for forecasting.
 - [**USPS**](./files/data/usps.ipynb): Digit classification dataset from [1989](http://yann.lecun.com/exdb/publis/pdf/lecun-89e.pdf).
+
+## Models
+
+> Keras [functional](https://keras.io/guides/functional_api/) models.
+
+- [**LeNet**](./files/models/lenet.py): [LeNet-5](https://en.wikipedia.org/wiki/LeNet) implementation for [MNIST](https://en.wikipedia.org/wiki/MNIST_database).
+- [**SqueezeNet**](./files/models/squeezenet.py): [SqueezeNet](https://arxiv.org/abs/1602.07360) with residual connections.
 
 ## Apps
 
