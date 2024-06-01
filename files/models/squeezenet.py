@@ -13,43 +13,45 @@
 # module, a convolutional layer with the number of filters equal to `n_classes` is used.
 # Global average pooling reduces the `n_classes` feature maps to a single vector for softmax.
 #
-# I've made the following changes from the reference Caffe implementation:
-# 1. ReLU activation is replaced by Swish (Mish and GELU are slower).
-# 2. Glorot uniform initialization is replaced by He uniform initialization.
-# 3. SGD with momentum (0.9) and weight decay (0.0002) is replaced by AdamW.
-#
 # https://arxiv.org/abs/1602.07360 (Iandola et al., 2016)
 # https://github.com/pytorch/vision/blob/main/torchvision/models/squeezenet.py
-from keras import Input, Model, activations, initializers, layers, optimizers
+from keras import Input, Model, initializers, layers, saving
 
 
+# https://keras.io/guides/serialization_and_saving
+@saving.register_keras_serializable(name="Fire")
 class Fire(layers.Layer):
-    def __init__(self, filters, name=None):
-        super().__init__(name=name)
+    def __init__(self, filters, *, seed=42, name=None, activation="relu", **kwargs):
+        super().__init__(name=name, **kwargs)
+        self.filters = filters
+        self.activation = activation
         self.squeeze = layers.Conv2D(
             filters // 8,
             kernel_size=1,
-            activation=activations.swish,
-            bias_initializer=initializers.Zeros(),
-            kernel_initializer=initializers.HeUniform(),
+            activation=activation,
+            name=f"{name}_squeeze",
+            kernel_initializer=initializers.HeUniform(seed=seed),
         )
-
-        # expand filters get halved to keep the same number of total filters after concatenation
         self.expand_1x1 = layers.Conv2D(
-            filters // 2,
+            filters // 2,  # expand filters get halved to keep the same number of total filters
             kernel_size=1,
-            activation=activations.swish,
-            bias_initializer=initializers.Zeros(),
-            kernel_initializer=initializers.HeUniform(),
+            activation=activation,
+            name=f"{name}_expand_1x1",
+            kernel_initializer=initializers.HeUniform(seed=seed),
         )
         self.expand_3x3 = layers.Conv2D(
             filters // 2,
             kernel_size=3,
             padding="same",
-            activation=activations.swish,
-            bias_initializer=initializers.Zeros(),
-            kernel_initializer=initializers.HeUniform(),
+            activation=activation,
+            name=f"{name}_expand_3x3",
+            kernel_initializer=initializers.HeUniform(seed=seed),
         )
+
+    def get_config(self):
+        config = super().get_config()
+        config.update({"filters": self.filters, "activation": self.activation})
+        return config
 
     # join the squeeze and expand layers
     def call(self, inputs):
@@ -59,13 +61,12 @@ class Fire(layers.Layer):
         return layers.Concatenate()([x1, x2])
 
 
-# classes and shape defaults to CIFAR-10
-# set dropout to 0 to omit
-def make_squeezenet(
-    n_classes=10,
-    input_shape=(32, 32, 3),
-    dropout=0.5,
-    loss="categorical_crossentropy",
+def get_squeezenet(
+    seed=42,
+    dropout=0.0,
+    classes=1000,
+    activation="relu",
+    input_shape=(224, 224, 3),
 ):
     inputs = Input(input_shape)
 
@@ -75,61 +76,41 @@ def make_squeezenet(
         strides=2,
         name="conv1",
         padding="same",
-        activation=activations.swish,
-        bias_initializer=initializers.Zeros(),
-        kernel_initializer=initializers.HeUniform(),
+        activation=activation,
+        kernel_initializer=initializers.HeUniform(seed=seed),
     )(inputs)
     c1 = layers.MaxPooling2D(3, strides=2, name="pool1")(c1)
 
-    f2 = Fire(128, name="fire2")(c1)
-    #  ↕
-    f3 = Fire(128, name="fire3")(f2)
+    f2 = Fire(128, seed=seed, name="fire2", activation=activation)(c1)
+    f3 = Fire(128, seed=seed, name="fire3", activation=activation)(f2)
     f3 = layers.Add()([f2, f3])
     f3 = layers.MaxPooling2D(3, strides=2, name="pool2")(f3)
 
-    f4 = Fire(256, name="fire4")(f3)
-    #  ↕
-    f5 = Fire(256, name="fire5")(f4)
+    f4 = Fire(256, seed=seed, name="fire4", activation=activation)(f3)
+    f5 = Fire(256, seed=seed, name="fire5", activation=activation)(f4)
     f5 = layers.Add()([f4, f5])
     f5 = layers.MaxPooling2D(3, strides=2, name="pool3")(f5)
 
-    f6 = Fire(384, name="fire6")(f5)
-    #  ↕
-    f7 = Fire(384, name="fire7")(f6)
+    f6 = Fire(384, seed=seed, name="fire6", activation=activation)(f5)
+    f7 = Fire(384, seed=seed, name="fire7", activation=activation)(f6)
     f7 = layers.Add()([f6, f7])
 
     # dropout after final fire module
-    f8 = Fire(512, name="fire8")(f7)
-    #  ↕
-    f9 = Fire(512, name="fire9")(f8)
+    f8 = Fire(512, seed=seed, name="fire8", activation=activation)(f7)
+    f9 = Fire(512, seed=seed, name="fire9", activation=activation)(f8)
     f9 = layers.Add()([f8, f9])
     f9 = layers.Dropout(dropout)(f9)
 
     # gaussian initialization for final layer
     # activation after pooling
     c10 = layers.Conv2D(
-        n_classes,
+        classes,
         name="conv10",
         kernel_size=1,
         activation=None,
-        bias_initializer=initializers.Zeros(),
-        kernel_initializer=initializers.RandomNormal(
-            mean=0.0,
-            stddev=0.01,
-        ),
+        kernel_initializer=initializers.RandomNormal(mean=0.0, seed=seed, stddev=0.01),
     )(f9)
-    c10 = layers.GlobalAveragePooling2D()(c10)
+    c10 = layers.GlobalAveragePooling2D(name="avgpool")(c10)
 
-    outputs = layers.Activation(activations.softmax)(c10)
-    optimizer = optimizers.AdamW(
-        weight_decay=0.004,
-        learning_rate=0.002,
-    )
-
-    model = Model(inputs=inputs, outputs=outputs)
-    model.compile(
-        loss=loss,
-        optimizer=optimizer,
-        metrics=["accuracy"],
-    )
-    return model
+    outputs = layers.Activation("softmax" if classes > 1 else "sigmoid", name="activation")(c10)
+    return Model(inputs=inputs, outputs=outputs, name="SqueezeNet")
