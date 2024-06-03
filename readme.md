@@ -26,11 +26,13 @@ Each notebook has links to [Colab](https://colab.research.google.com), [Kaggle](
 - [**Sktime**](./files/sktime.ipynb): Forecasting [sunspots](https://www.rdocumentation.org/packages/datasets/topics/sunspots) with models from [Sktime](https://github.com/sktime/sktime).
 - [**Statsmodels**](./files/statsmodels.ipynb): Visualizing various datasets included with [Statsmodels](https://github.com/statsmodels/statsmodels).
 - [**Sympy**](./files/sympy.ipynb): Plotting algebraic functions with [SymPy](https://www.sympy.org/en/index.html).
+- [**W&B**](./files/wandb.ipynb): Experiment tracking and artifact logging on [Weights & Biases](https://wandb.ai).
 - [**Widgets**](./files/widgets.ipynb): Interactive widget examples with [ipywidgets](https://github.com/jupyter-widgets/ipywidgets).
 - [**Yellowbrick**](./files/yellowbrick.ipynb): Visualizing a Random Forest classifier with [Yellowbrick](https://github.com/DistrictDataLabs/yellowbrick).
 
 ### TensorFlow
 
+- [**CIFAR**](./files/tf/cifar.ipynb): Fine-tuning image classifiers on the [CIFAR](https://www.cs.toronto.edu/~kriz/cifar.html) datasets.
 - [**KerasCV**](./files/tf/keras_cv.ipynb): Visualize advanced image augmentations from [KerasCV](https://keras.io/keras_cv/).
 - [**MNIST**](./files/tf/mnist.ipynb): Predict handwritten digits including an ipywidgets demo.
 - [**TensorBoard**](./files/tf/tensorboard.ipynb): Watch your tensors flow with TensorBoard and [Keras Tuner](https://keras.io/keras_tuner/).
@@ -49,10 +51,14 @@ Each notebook has links to [Colab](https://colab.research.google.com), [Kaggle](
 
 ## Models
 
-> Keras [functional](https://keras.io/guides/functional_api/) models.
+> Keras [functional](https://keras.io/guides/functional_api/) implementations from papers.
 
-- [**LeNet**](./files/models/lenet.py): [LeNet-5](https://en.wikipedia.org/wiki/LeNet) implementation for [MNIST](https://en.wikipedia.org/wiki/MNIST_database).
-- [**SqueezeNet**](./files/models/squeezenet.py): [SqueezeNet](https://arxiv.org/abs/1602.07360) with residual connections.
+- [**AlexNet**](./files/models/alexnet.py): [ImageNet Classification with Deep Convolutional Neural Networks](https://proceedings.neurips.cc/paper_files/paper/2012/file/c399862d3b9d6b76c8436e924a68c45b-Paper.pdf) (Krizhevsky et al., 2012)
+- [**Darknet-19**](./files/models/darknet19.py): [YOLO9000: Better, Faster, Stronger](https://arxiv.org/abs/1612.08242) (Redmon and Farhadi, 2016)
+- [**LeNet-5**](./files/models/lenet.py): [Gradient-Based Learning Applied to Document Recognition](http://yann.lecun.com/exdb/publis/pdf/lecun-01a.pdf) (LeCun et al., 1998)
+- [**ResNet-18**](./files/models/resnet18.py): [Deep Residual Learning for Image Recognition](https://arxiv.org/abs/1512.03385) (He et al., 2015)
+- [**SqueezeNet**](./files/models/squeezenet.py): [AlexNet-level Accuracy with 50x Fewer Parameters](https://arxiv.org/abs/1602.07360) (Iandola et al., 2016)
+- [**VGG-16/19**](./files/models/vgg.py): [Very Deep Convolutional Networks for Large-Scale Image Recognition](https://arxiv.org/abs/1409.1556) (Simonyan and Zisserman, 2014)
 
 ## Apps
 
