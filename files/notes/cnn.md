@@ -28,11 +28,19 @@ Each filter is initialized randomly (or with Glorot/He) and optimized using grad
 
 The size of the feature map is determined by how much the filter moves in each step, known as _stride_. The stride size is usually 1, but can be larger to reduce the size of the feature map. With a stride of 1, a 3x3 filter will produce a 98x98 feature map from a 100x100 image. If you have 32 filters, then you'll end up with a 98x98x32 tensor.
 
-To reduce the spatial dimensions of the feature maps, _pooling_ layers are used.
+For a convolutional layer, the output size can be calculated using:
+
+$\text{Output Size} = \lfloor \frac{\text{Input Size} - \text{Filter Size} + 2 \times \text{Padding}}{\text{Stride}} \rfloor + 1$
+
+Similarly, for a pooling layer:
+
+$\text{Output Size} = \lfloor \frac{\text{Input Size} - \text{Filter Size}}{\text{Stride}} \rfloor + 1$
+
+> NB: The $\lfloor$ and $\rfloor$ symbols denote the floor function, which rounds a real number down to the nearest integer.
 
 ## Pooling
 
-Pooling layers reduce the height and width of the feature maps. The most common type of pooling is _max pooling_. A 2x2 max pooling operation reduces the dimensions of the feature map by half. This helps in reducing the computational load and the complexity of the model.
+Pooling layers reduce the spatial dimensions (height and width) of the feature maps. The most common type of pooling is _max pooling_. A 2x2 max pooling operation reduces the dimensions of the feature map by half. This helps in reducing the computational load and the complexity of the model.
 
 Max pooling extracts the most "activated" pixels from the feature map and reduces their spatial dimensions. This process is also known as _downsampling_. This helps the model focus on the most important features which allows it to generalize better (reduces overfitting). This means the network can recognize features regardless of their exact position or size in images.
 
@@ -69,6 +77,48 @@ In Keras, you can add padding to a convolutional layer with the `padding` keywor
 ## Output Layer
 
 Like with all neural networks, the output layer and activation function depend on the task. If you are classifying the digits 0-9 (multiclass), then your output layer would have 10 neurons and use softmax activation. If you were doing binary classification or multilabel classification, you would use sigmoid activation.
+
+## AlexNet
+
+Introduced by Alex Krizhevsky, Ilya Sutskever, and Geoffrey Hinton in [2012](https://proceedings.neurips.cc/paper_files/paper/2012/file/c399862d3b9d6b76c8436e924a68c45b-Paper.pdf), AlexNet was the winning entry in the [ImageNet](https://arxiv.org/abs/1409.0575v3) Large Scale Visual Recognition Challenge that year (ILSVRC2012).
+
+### ImageNet
+
+The ImageNet dataset was created by Fei-Fei Li and her team at Stanford. At the time, the dataset contained over 10 million images and 10,000 classes. For the competition, the training set contained 1.2 million images across 1000 classes. The test set contained 150,000 images.
+
+### Training
+
+They trained using SGD with a batch size of 128, momentum of 0.9, and weight decay of 0.0005. Weights were initialized with a Gaussian distribution with a mean of 0 and standard deviation of 0.01. Biases in the 2nd, 4th, and 5th convolutional layers plus both dense layers were initialized to 1; all other biases were initialized to 0.
+
+The learning rate was adjusted manually. When they observed the loss not improving (plateauing), they divided the learning rate by 10 (now `ReduceLROnPlateau` in Keras).
+
+They trained for 90 epochs over 6 days (2x GTX 580 3GB). Starting with a learning rate of 0.01, they reduced it 3 times during training.
+
+### Reducing overfitting
+
+Data augmentation was used to reduce overfitting. They started by taking random 224x224 patches of the original 256x256 images and then making horizontal flips of the patches. Note that to make a prediction, they would make 5 patches of the input image and another 5 flipped patches and average the network's predictions made on each patch.
+
+The second augmentation technique was to alter the intensities of the RGB channels. They performed PCA on the RGB values of the entire ImageNet training set and used the principal components (directions of maximum variance) and eigenvalues (magnitude of variance) to perturb the RGB channels of the training images. These perturbations simulate different lighting conditions.
+
+They found that 50% dropout was necessary to reduce overfitting as well, but doubled the number of epochs necessary to converge.
+
+Finally, no regularization layers (e.g., L1, L2) were used at all.
+
+### Model architecture
+
+* Input: 224x224x3
+* Convolution w/ 11x11 kernel +2 pad +4 stride (ReLU): 55x55x96
+* Max pooling w/ 3x3 kernel +2 stride: 27x27x96
+* Convolution w/ 5x5 kernel +2 pad +1 stride (ReLU): 27x27x256
+* Max pooling w/ 3x3 kernel +2 stride: 13x13x256
+* Convolution w/ 3x3 kernel +1 pad +1 stride (ReLU): 13x13x384
+* Convolution w/ 3x3 kernel +1 pad +1 stride (ReLU): 13x13x384
+* Convolution w/ 3x3 kernel +1 pad +1 stride (ReLU): 13x13x256
+* Max pooling w/ 3x3 kernel +2 stride: 6x6x256
+* Flatten: 9216
+* Dense (ReLU, 50% dropout): 4096
+* Dense (ReLU, 50% dropout): 4096
+* Output (Softmax): 1000
 
 ## Resources
 
