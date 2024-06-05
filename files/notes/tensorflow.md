@@ -132,6 +132,16 @@ Then you need to freeze the base model by setting `model.trainable = False` and 
 
 Once the model has converged on the new dataset, you can unfreeze the base model and retrain the whole thing using a smaller learning rate, which can lead to further improvements.
 
+## Datasets
+
+A couple useful functions for working with image datasets are `show_examples` and `as_dataframe`.
+
+```py
+import tensorflow_datasets as tfds
+
+mnist_train, mnist_test = tfds.load("mnist", split=["train", "test"], as_supervised=True)
+```
+
 ## Resources
 
 * https://www.tensorflow.org/guide/tensor
