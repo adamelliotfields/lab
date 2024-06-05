@@ -32,6 +32,7 @@ Each notebook has links to [Colab](https://colab.research.google.com), [Kaggle](
 
 ### TensorFlow
 
+- [**Autoencoder**](./files/tf/autoencoder.ipynb): Denoising convolutional autoencoder for [MNIST](http://yann.lecun.com/exdb/mnist/).
 - [**CIFAR**](./files/tf/cifar.ipynb): Fine-tuning image classifiers on the [CIFAR](https://www.cs.toronto.edu/~kriz/cifar.html) datasets.
 - [**KerasCV**](./files/tf/keras_cv.ipynb): Visualize advanced image augmentations from [KerasCV](https://keras.io/keras_cv/).
 - [**MNIST**](./files/tf/mnist.ipynb): Predict handwritten digits including an ipywidgets demo.
