@@ -146,6 +146,8 @@ https://www.codecademy.com/learn/dlsp-classification-track/modules/dlsp-image-cl
 
 https://www.freecodecamp.org/news/an-intuitive-guide-to-convolutional-neural-networks-260c2de0a050/
 
+https://www.bouvet.no/bouvet-deler/understanding-convolutional-neural-networks-part-1
+
 http://yann.lecun.com/exdb/lenet/
 
 ### Projects
