@@ -15,7 +15,6 @@ Each notebook has links to [Colab](https://colab.research.google.com), [Kaggle](
 
 - [**Autograd**](./files/autograd.ipynb): "From scratch" [iris](https://www.rdocumentation.org/packages/datasets/topics/iris) classifier neural network with [Autograd](https://github.com/HIPS/autograd).
 - [**California Housing**](./files/california_housing.ipynb): EDA and regression with the [California Housing](https://www.dcc.fc.up.pt/~ltorgo/Regression/cal_housing.html) dataset.
-- [**Draw**](./files/draw.ipynb): Drawing app made with [ipywidgets](https://github.com/jupyter-widgets/ipywidgets) and [ipycanvas](https://github.com/jupyter-widgets-contrib/ipycanvas).
 - [**EDA**](./files/eda.ipynb): Notes and snippets for exploratory data analysis.
 - [**Functions**](./files/functions.ipynb): Explanations and illustrations of activations, loss functions, and optimization algorithms.
 - [**Monash**](./files/monash.ipynb): Exploring some of [Monash](https://forecastingdata.org)'s datasets on [🤗](https://huggingface.co/datasets/monash_tsf).
@@ -38,12 +37,11 @@ Each notebook has links to [Colab](https://colab.research.google.com), [Kaggle](
 - [**RNN**](./files/tf/rnn.ipynb): Time series forecasting and sentiment analysis with RNNs, LSTMs, and GRUs.
 - [**Shakespeare**](./files/tf/shakespeare.ipynb): Multilayer LSTM trained on [Shakespeare](https://cs.stanford.edu/people/karpathy/char-rnn/) for character prediction.
 - [**TensorBoard**](./files/tf/tensorboard.ipynb): Watch your tensors flow with TensorBoard and [Keras Tuner](https://keras.io/keras_tuner/).
-- [**XOR**](./files/tf/xor.ipynb): Exclusive OR classifier including an ipywidgets demo.
 
 ### PyTorch
 
 - [**Iris**](./files/torch/iris.ipynb): Iris classifier with [Lighting](https://github.com/Lightning-AI/pytorch-lightning) for training.
-- [**NeuralProphet**](./files/neuralprophet.ipynb): Demonstration of forecasting [airline passengers](https://www.rdocumentation.org/packages/datasets/topics/AirPassengers) with [NeuralProphet](https://github.com/ourownstory/neural_prophet).
+- [**NeuralProphet**](./files/torch/neuralprophet.ipynb): Demonstration of forecasting [airline passengers](https://www.rdocumentation.org/packages/datasets/topics/AirPassengers) with [NeuralProphet](https://github.com/ourownstory/neural_prophet).
 
 ## Models
 
@@ -60,8 +58,17 @@ Each notebook has links to [Colab](https://colab.research.google.com), [Kaggle](
 
 ### Gradio
 
+> Usage: `gradio path/to/app.py`
+
 - [**Iris**](./files/gradio/iris.py): Iris classifier and data visualizer with API.
 - [**Todos**](./files/gradio/todos.py): Todo app demonstrating session state and custom CSS.
+
+### Voila
+
+> Usage: `voila path/to/notebook.ipynb`
+
+- [**Draw**](./files/voila/draw.ipynb): Drawing app made with [ipywidgets](https://github.com/jupyter-widgets/ipywidgets) and [ipycanvas](https://github.com/jupyter-widgets-contrib/ipycanvas).
+- [**XOR**](./files/voila/xor.ipynb): MLP classifier for the XOR problem.
 
 ## Installation
 
@@ -102,5 +109,5 @@ See [`Makefile`](./Makefile) for more scripts.
 
 ```sh
 HF_TOKEN=hf...
-WANDB_API_KEY=abc...
+WANDB_API_KEY=wb...
 ```
