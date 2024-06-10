@@ -32,5 +32,6 @@ tensorflow-datasets==4.9.4
 torch==2.3.0
 torchinfo==1.8.0
 transformers==4.40.1
+voila==0.5.7
 wandb==0.17.0
 yellowbrick==1.5
