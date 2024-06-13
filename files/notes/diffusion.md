@@ -35,7 +35,9 @@ The "bottom" of the U-Net is the _bottleneck_. This is where the latent space is
 
 ### Posts
 
+* <https://huggingface.co/blog/annotated-diffusion>
 * <https://lilianweng.github.io/posts/2021-07-11-diffusion-models>
+* <https://jalammar.github.io/illustrated-stable-diffusion>
 * <https://keras.io/examples/generative/random_walks_with_stable_diffusion>
 * <https://www.assemblyai.com/blog/diffusion-models-for-machine-learning-introduction>
 * <https://blog.marvik.ai/2023/11/28/an-introduction-to-diffusion-models-and-stable-diffusion>

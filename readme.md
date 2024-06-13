@@ -36,6 +36,7 @@ Each notebook has links to [Colab](https://colab.research.google.com), [Kaggle](
 - [**MNIST**](./files/tf/mnist.ipynb): Predict handwritten digits including an ipywidgets demo.
 - [**RNN**](./files/tf/rnn.ipynb): Time series forecasting and sentiment analysis with RNNs, LSTMs, and GRUs.
 - [**Shakespeare**](./files/tf/shakespeare.ipynb): Multilayer LSTM trained on [Shakespeare](https://cs.stanford.edu/people/karpathy/char-rnn/) for character prediction.
+- [**Stable Diffusion**](./files/tf/stable_diffusion.ipynb): Stable Diffusion v1.4 in Keras.
 - [**TensorBoard**](./files/tf/tensorboard.ipynb): Watch your tensors flow with TensorBoard and [Keras Tuner](https://keras.io/keras_tuner/).
 
 ### PyTorch
